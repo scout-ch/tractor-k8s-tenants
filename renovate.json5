@@ -13,7 +13,8 @@
         "patch",
         "digest"
       ],
-      "automerge": true
+      "automerge": true,
+      "automergeType": "branch"
     },
     {
       "matchDatasources": [
