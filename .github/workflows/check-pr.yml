@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
-      - uses: opentofu/setup-opentofu@592200bd4b9bbf4772ace78f887668b1aee8f716 # v1
+      - uses: opentofu/setup-opentofu@000eeb8522f0572907c393e8151076c205fdba1b # v1
         with:
           tofu_version: 1.10.6
       - name: OpenTofu Format
