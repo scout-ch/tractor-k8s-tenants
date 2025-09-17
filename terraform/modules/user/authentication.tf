@@ -10,13 +10,13 @@ resource "tls_cert_request" "user-cert" {
 
   subject {
     common_name = local.unique_username
-    // To add groups, add organization entries
+    // To add the user to groups, add organization entries here
   }
 }
 
 resource "kubernetes_certificate_signing_request_v1" "user-cert" {
   metadata {
-    name = "${var.name}-csr"
+    name = "${var.username}-csr"
   }
 
   spec {
