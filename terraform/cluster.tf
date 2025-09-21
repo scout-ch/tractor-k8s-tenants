@@ -25,8 +25,8 @@ module "cluster" {
   }
 
   namespace_configs = {
-    "cosinus-ragflow" = { instance_pool = "pck-8kxhclv-pst" }
-    "pbs-taiga"       = { instance_pool = "pck-8kxhclv-pb6" }
+    "cosinus-ragflow" = { instance_pool = "pck-8kxhclv-pfb" }
+    "pbs-taiga"       = { instance_pool = "pck-8kxhclv-pdp" }
   }
 }
 
