@@ -16,7 +16,7 @@ jobs:
           tofu_version: 1.10.6
       - name: OpenTofu Format
         id: fmt
-        run: tofu fmt -check -recursive -diff terraform
+        run: tofu fmt -check -recursive -diff tofu
       - name: Update Pull Request
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         if: github.event_name == 'pull_request' && (success() || failure())
