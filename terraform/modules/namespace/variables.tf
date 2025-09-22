@@ -8,3 +8,8 @@ variable "instance_pool" {
   nullable = true
   default  = null
 }
+
+variable "users" {
+  type    = map(string)
+  default = {}
+}

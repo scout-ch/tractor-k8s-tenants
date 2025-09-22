@@ -14,5 +14,5 @@ variable "cluster_info" {
 variable "default_namespace" {
   type     = string
   nullable = true
-  default  = null
+  default  = "default"
 }

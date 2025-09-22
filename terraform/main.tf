@@ -17,3 +17,11 @@ terraform {
     }
   }
 }
+
+locals {
+  cluster_info = {
+    name     = "pck-8kxhclv"
+    endpoint = "https://83.166.143.133:30566"
+    ca       = file("./ca.crt")
+  }
+}

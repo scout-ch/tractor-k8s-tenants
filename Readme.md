@@ -1,13 +1,13 @@
 # tractor-k8s-tenants
 
-Terraform config to manage tenants in the shared tractor Kubernetes cluster.
+OpenTofu config to manage tenants in the shared tractor Kubernetes cluster.
 
 ## Usage
 
 > [!IMPORTANT]  
 > Prerequisites: [OpenTofu](https://opentofu.org/docs/intro/install/) and admin access to the tractor Kubernetes cluster.
 
-To add a new tenant, edit [`terraform/cluster.tf`](./terraform/cluster.tf)
+To add a new tenant, add it to `users.tf`, `namespaces.tf` and `outputs.tf` accordingly.
 
 Then run:
 
@@ -15,7 +15,7 @@ Then run:
 cd terraform
 tofu init
 tofu apply
-tofu output -raw kubeconfig_username > kubeconfig.yaml
+tofu output -raw kubeconfig_<username> > kubeconfig.yaml
 ```
 
 You can then use the generated `kubeconfig.yaml` to access the tenant's namespace in the cluster.
@@ -26,7 +26,7 @@ If you lose your kubeconfig or want to create a new one, you can do so by tainti
 
 ```bash
 cd terraform
-tofu taint "module.cluster.module.users[\"<username>\"].random_string.suffix"
+tofu taint "module.u_<username>.random_string.suffix"
 tofu apply
-tofu output -raw kubeconfig_username > kubeconfig.yaml
+tofu output -raw kubeconfig_<username> > kubeconfig.yaml
 ```
