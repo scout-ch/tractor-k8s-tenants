@@ -15,3 +15,12 @@ module "u_clever" {
 
   cluster_info = local.cluster_info
 }
+
+module "u_filou" {
+  source = "./modules/user"
+
+  username          = "filou"
+  default_namespace = null
+
+  cluster_info = local.cluster_info
+}
