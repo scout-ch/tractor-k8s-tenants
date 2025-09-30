@@ -24,3 +24,12 @@ module "u_filou" {
 
   cluster_info = local.cluster_info
 }
+
+module "u_floh" {
+  source = "./modules/user"
+
+  username          = "floh"
+  default_namespace = "pbs-who-is-who"
+
+  cluster_info = local.cluster_info
+}

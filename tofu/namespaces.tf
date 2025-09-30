@@ -15,3 +15,10 @@ module "ns_pbs_taiga" {
   name          = "pbs-taiga"
   instance_pool = "pck-8kxhclv-pdp"
 }
+
+module "ns_pbs_who_is_who" {
+  source = "./modules/namespace"
+
+  name          = "pbs-who-is-who"
+  instance_pool = "pck-8kxhclv-pdp"
+}
