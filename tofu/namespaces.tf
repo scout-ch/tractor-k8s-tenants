@@ -22,3 +22,10 @@ module "ns_pbs_who_is_who" {
   name          = "pbs-who-is-who"
   instance_pool = "pck-8kxhclv-pdp"
 }
+
+module "ns_mova_erinnerungsbuch" {
+  source = "./modules/namespace"
+
+  name          = "mova-erinnerungsbuch"
+  instance_pool = "pck-8kxhclv-pdp"
+}
