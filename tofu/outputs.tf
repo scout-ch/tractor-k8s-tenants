@@ -13,3 +13,8 @@ output "kubeconfig_floh" {
   value     = module.u_floh.kubeconfig
   sensitive = true
 }
+
+output "kubeconfig_filou" {
+  value     = module.u_floh.kubeconfig
+  sensitive = true
+}
