@@ -15,6 +15,6 @@ output "kubeconfig_floh" {
 }
 
 output "kubeconfig_filou" {
-  value     = module.u_floh.kubeconfig
+  value     = module.u_filou.kubeconfig
   sensitive = true
 }
