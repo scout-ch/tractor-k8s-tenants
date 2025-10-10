@@ -21,6 +21,10 @@ module "ns_pbs_who_is_who" {
 
   name          = "pbs-who-is-who"
   instance_pool = "pck-8kxhclv-pdp"
+
+  users = {
+    "floh-who-is-who" = module.u_floh.unique_username
+  }
 }
 
 module "ns_mova_erinnerungsbuch" {
