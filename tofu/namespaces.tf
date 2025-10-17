@@ -33,3 +33,10 @@ module "ns_mova_erinnerungsbuch" {
   name          = "mova-erinnerungsbuch"
   instance_pool = "pck-8kxhclv-pdp"
 }
+
+module "ns_pbs_matrix" {
+  source = "./modules/namespace"
+
+  name          = "pbs-matrix"
+  instance_pool = "pck-8kxhclv-pdp"
+}
