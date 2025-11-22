@@ -40,3 +40,10 @@ module "ns_pbs_matrix" {
   name          = "pbs-matrix"
   instance_pool = "pck-8kxhclv-pdp"
 }
+
+module "ns_pbs_redirector" {
+  source = "./modules/namespace"
+
+  name          = "pbs-redirector"
+  instance_pool = "pck-8kxhclv-pdp"
+}
