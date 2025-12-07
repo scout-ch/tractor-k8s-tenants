@@ -32,3 +32,10 @@ patches:
     target:
       kind: Kustomization
       name: "flux-system"
+  - patch: |
+      - op: replace
+        path: /spec/interval
+        value: 1h
+    target:
+      kind: GitRepository
+      name: "flux-system"
