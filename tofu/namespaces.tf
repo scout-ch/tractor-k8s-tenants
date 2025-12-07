@@ -9,12 +9,6 @@ module "ns_cosinus_ragflow" {
   }
 }
 
-module "ns_pbs_taiga" {
-  source = "./modules/namespace"
-
-  name          = "pbs-taiga"
-  instance_pool = "pck-8kxhclv-pdp"
-}
 
 module "ns_pbs_who_is_who" {
   source = "./modules/namespace"
@@ -38,23 +32,9 @@ module "ns_pbs_pfadi_finder_midata_adapter" {
   }
 }
 
-module "ns_mova_erinnerungsbuch" {
-  source = "./modules/namespace"
-
-  name          = "mova-erinnerungsbuch"
-  instance_pool = "pck-8kxhclv-pdp"
-}
-
 module "ns_pbs_matrix" {
   source = "./modules/namespace"
 
   name          = "pbs-matrix"
-  instance_pool = "pck-8kxhclv-pdp"
-}
-
-module "ns_pbs_redirector" {
-  source = "./modules/namespace"
-
-  name          = "pbs-redirector"
   instance_pool = "pck-8kxhclv-pdp"
 }
