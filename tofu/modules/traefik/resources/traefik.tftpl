@@ -125,3 +125,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+    %{ if instance_pool!= null }
+    nodeSelector:
+      kaas.infomaniak.cloud/instance-pool: ${instance_pool}
+    %{ endif }

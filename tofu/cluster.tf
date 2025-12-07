@@ -10,4 +10,5 @@ module "traefik" {
   source = "./modules/traefik"
 
   cluster_config_repository = module.flux.config_repository
+  instance_pool             = "pck-8kxhclv-pdp"
 }
