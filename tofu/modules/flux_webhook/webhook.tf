@@ -12,7 +12,7 @@ resource "random_password" "token" {
   numeric = true
 }
 
-resource "kubernetes_secret" "token" {
+resource "kubernetes_secret_v1" "token" {
   metadata {
     name      = local.webhook_receiver_secret_name
     namespace = var.secret_namespace
@@ -36,7 +36,7 @@ resource "kubernetes_manifest" "this" {
   }
 
   depends_on = [
-    kubernetes_secret.token,
+    kubernetes_secret_v1.token,
   ]
 }
 

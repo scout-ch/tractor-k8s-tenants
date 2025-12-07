@@ -16,7 +16,7 @@ resource "kubernetes_namespace_v1" "this" {
 
 data "github_ssh_keys" "this" {}
 
-resource "kubernetes_secret" "this" {
+resource "kubernetes_secret_v1" "this" {
   metadata {
     name      = local.kubernetes_secret_name
     namespace = kubernetes_namespace_v1.this.metadata[0].name
