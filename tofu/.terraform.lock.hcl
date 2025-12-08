@@ -28,6 +28,7 @@ provider "registry.opentofu.org/hashicorp/kubernetes" {
   version     = "3.0.0"
   constraints = ">= 3.0.0, 3.0.0, < 4.0.0"
   hashes = [
+    "h1:BFOoTN7FyRJzbYKk357Jj9BzwG8WgDLwi3sqikULgRk=",
     "h1:f/rp14gttYGrYy184ZZglc6ZPCnvPzt9OS2Mg23tx/w=",
     "zh:0264e2d81db15c7a2af049dd19e3eb82efb0ddd6bc1d9ef444980e7e34f014c1",
     "zh:18def39abcd97a06c77c8587e11b4fbd173f52917ab93f5b8422265c8ef68ac4",

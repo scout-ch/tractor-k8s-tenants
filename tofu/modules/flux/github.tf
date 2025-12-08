@@ -1,8 +1,12 @@
 resource "github_repository" "this" {
   name        = var.github_repository
   description = var.github_repository
-  visibility  = "private"
+  visibility  = "public"
   auto_init   = true # This is extremely important as flux_bootstrap_git will not work without a repository that has been initialised
+
+  topics = [
+    "tractor",
+  ]
 }
 
 resource "tls_private_key" "flux" {

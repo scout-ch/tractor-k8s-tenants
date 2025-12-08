@@ -19,6 +19,11 @@ resource "github_repository" "this" {
   squash_merge_commit_message = "PR_BODY"
 
   visibility = var.visibility
+
+  topics = [
+    "tractor",
+    "k8s-tenant",
+  ]
 }
 
 // TODO: Bootstrap repo with initial content
