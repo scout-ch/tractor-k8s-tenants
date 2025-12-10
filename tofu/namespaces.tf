@@ -31,10 +31,3 @@ module "ns_pbs_pfadi_finder_midata_adapter" {
     "floh-pfadi-finder-midata-adapter" = module.u_floh.unique_username
   }
 }
-
-module "ns_pbs_matrix" {
-  source = "./modules/namespace"
-
-  name          = "pbs-matrix"
-  instance_pool = "pck-8kxhclv-pdp"
-}

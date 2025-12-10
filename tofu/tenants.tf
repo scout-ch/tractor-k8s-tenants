@@ -31,3 +31,15 @@ module "t_pbs_taiga" {
 
   visibility = "public"
 }
+
+module "t_pbs_matrix" {
+  source = "./modules/tenant"
+
+  tenant_name                       = "pbs-matrix"
+  cluster_config_repository         = module.flux.config_repository
+  instance_pool                     = "pck-8kxhclv-pdp"
+  webhook_ingress_host              = local.cluster_webhook_host
+  tenant_config_repo_kustomize_path = "fluxcd"
+
+  visibility = "public"
+}
