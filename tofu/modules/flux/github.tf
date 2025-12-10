@@ -30,6 +30,10 @@ resource "github_repository_file" "tenants" {
   repository = github_repository.this.name
   file       = "${local.cluster_config_path}/tenants.yaml"
   content    = file("${path.module}/resources/tenants.yaml")
+
+  depends_on = [
+    github_repository_file.infrastructure,
+  ]
 }
 
 resource "github_repository_file" "webhook_ingress" {
@@ -38,4 +42,8 @@ resource "github_repository_file" "webhook_ingress" {
   repository = var.github_repository
   file       = "${local.cluster_config_path}/webhook-ingress.yaml"
   content    = each.value
+
+  depends_on = [
+    github_repository_file.tenants,
+  ]
 }
