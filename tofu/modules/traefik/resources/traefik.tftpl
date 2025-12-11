@@ -70,10 +70,7 @@ spec:
       kubernetesGateway:
         enabled: true
     gateway:
-      listeners:
-        web:
-          namespacePolicy:
-            from: All
+      enabled: false # Gateways need to be created manually per namespace for tenant separation
     service:
       spec:
         externalTrafficPolicy: Local # 👈 Preserve client source IP
