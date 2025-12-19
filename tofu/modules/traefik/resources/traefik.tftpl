@@ -92,37 +92,9 @@ spec:
       websecure:
         proxyProtocol:
           insecure: true
-
-    # Cert resolver specific configuration
-    ## We should use cert-manager in the future
-    ## https://doc.traefik.io/traefik/reference/install-configuration/tls/certificate-resolvers/acme/#using-letsencrypt-with-kubernetes
-    certificatesResolvers:
-      letsencrypt:
-        acme:
-          email: "itkom@pbs.ch"
-          storage: "/data/acme.json" # Path to store the certificate information.
-          tlsChallenge: "true"
-    persistence:
+    autoscale:
       enabled: true
-    deployment:
-      initContainers:
-        # The "volume-permissions" init container is required if you run into permission issues.
-        # Related issue: https://github.com/traefik/traefik-helm-chart/issues/396
-        - name: volume-permissions
-          image: busybox:1.36
-          command:
-            [
-              "sh",
-              "-c",
-              "touch /data/acme.json; chmod -v 600 /data/acme.json; chown -R 65532:65532 /data/acme.json;",
-            ]
-          securityContext:
-            runAsNonRoot: false
-            runAsGroup: 0
-            runAsUser: 0
-          volumeMounts:
-            - name: data
-              mountPath: /data
+      maxReplicas: 3
     %{ if instance_pool!= null }
     nodeSelector:
       kaas.infomaniak.cloud/instance-pool: ${instance_pool}
