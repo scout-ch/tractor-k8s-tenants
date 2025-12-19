@@ -12,3 +12,9 @@ module "traefik" {
   cluster_config_repository = module.flux.config_repository
   instance_pool             = "pck-8kxhclv-pdp"
 }
+
+module "cert_manager" {
+  source = "./modules/cert_manager"
+
+  cluster_config_repository = module.flux.config_repository
+}

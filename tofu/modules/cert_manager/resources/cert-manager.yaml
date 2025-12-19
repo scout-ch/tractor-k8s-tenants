@@ -1,0 +1,83 @@
+#
+# RBAC
+#
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: cert-manager
+  name: cert-manager
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: cert-manager
+  name: cert-manager
+  namespace: cert-manager
+---
+# cert-manager needs cluster-wide permissions to watch for IngressRoutes and provides CRDs
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: cert-manager
+  name: cert-manager-reconciler
+  namespace: cert-manager
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: cert-manager
+    namespace: cert-manager
+#
+# cert-manager HelmRelease
+#
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  interval: 1m0s
+  type: oci
+  url: oci://quay.io/jetstack/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  serviceAccountName: cert-manager
+  chart:
+    spec:
+      chart: cert-manager
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: cert-manager
+        namespace: cert-manager
+      version: 1.19.2
+  install:
+    createNamespace: true
+  interval: 1m0s
+  releaseName: cert-manager
+  storageNamespace: cert-manager
+  targetNamespace: cert-manager
+  dependsOn:
+    - name: traefik
+      namespace: traefik
+  values:
+    crds:
+      enabled: true
+    config:
+      apiVersion: controller.config.cert-manager.io/v1alpha1
+      kind: ControllerConfiguration
+      enableGatewayAPI: true
+    extraArgs:
+      - "--enable-gateway-api"

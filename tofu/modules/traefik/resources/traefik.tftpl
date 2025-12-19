@@ -23,7 +23,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: traefik
-  name: gotk-reconciler
+  name: traefik-reconciler
   namespace: traefik
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -81,14 +81,17 @@ spec:
         enabled: true
     ports:
       web:
+        port: 80
         proxyProtocol:
           insecure: true
         redirections:
           entryPoint:
+            priority: 1
             to: websecure
             scheme: https
             permanent: true
       websecure:
+        port: 443
         proxyProtocol:
           insecure: true
 
