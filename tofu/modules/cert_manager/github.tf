@@ -4,7 +4,7 @@ resource "github_repository_file" "this" {
   content    = file("${path.module}/resources/cert-manager.yaml")
 }
 
-resource "github_repository_file" "this" {
+resource "github_repository_file" "cluster_issuers" {
   repository = var.cluster_config_repository
   file       = "infrastructure/crds/cluster-issuers.yaml"
   content    = file("${path.module}/resources/cluster-issuers.yaml")
