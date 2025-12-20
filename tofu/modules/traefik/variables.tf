@@ -3,6 +3,11 @@ variable "cluster_config_repository" {
   type        = string
 }
 
+variable "cluster_config_path" {
+  description = "Path to the cluster config"
+  type        = string
+}
+
 variable "instance_pool" {
   description = "Node selector instance pool"
   type        = string
