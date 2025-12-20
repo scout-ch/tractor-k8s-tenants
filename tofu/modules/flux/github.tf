@@ -20,12 +20,6 @@ resource "github_repository_deploy_key" "this" {
   read_only  = "false"
 }
 
-resource "github_repository_file" "infrastructure" {
-  repository = github_repository.this.name
-  file       = "${local.cluster_config_path}/infrastructure.yaml"
-  content    = file("${path.module}/resources/infrastructure.yaml")
-}
-
 resource "github_repository_file" "tenants" {
   repository = github_repository.this.name
   file       = "${local.cluster_config_path}/tenants.yaml"
