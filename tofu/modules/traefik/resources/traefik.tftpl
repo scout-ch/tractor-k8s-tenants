@@ -95,6 +95,8 @@ spec:
     autoscale:
       enabled: true
       maxReplicas: 3
+    ingressClass:
+      enabled: false
     %{ if instance_pool!= null }
     nodeSelector:
       kaas.infomaniak.cloud/instance-pool: ${instance_pool}
