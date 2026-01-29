@@ -60,7 +60,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 37.4.0
+      version: 39.0.0
   interval: 10m0s
   values:
     ingressRoute:
@@ -83,18 +83,18 @@ spec:
       web:
         proxyProtocol:
           insecure: true
-        redirections:
-          entryPoint:
-            priority: 1
-            to: websecure
-            scheme: https
-            permanent: true
+        http:
+          redirections:
+            entryPoint:
+              priority: 1
+              to: websecure
+              scheme: https
+              permanent: true
       websecure:
         proxyProtocol:
           insecure: true
-    autoscale:
-      enabled: true
-      maxReplicas: 3
+    deployment:
+      replicas: 3
     %{ if instance_pool!= null }
     nodeSelector:
       kaas.infomaniak.cloud/instance-pool: ${instance_pool}
