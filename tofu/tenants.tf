@@ -43,3 +43,15 @@ module "t_pbs_matrix" {
 
   visibility = "public"
 }
+
+module "t_pbs_backstage" {
+  source = "./modules/tenant"
+
+  tenant_name                       = "pbs-backstage"
+  cluster_config_repository         = module.flux.config_repository
+  instance_pool                     = "pck-8kxhclv-pdp"
+  webhook_ingress_host              = local.cluster_webhook_host
+  tenant_config_repo_kustomize_path = "kubeconfigs"
+
+  visibility = "public"
+}
