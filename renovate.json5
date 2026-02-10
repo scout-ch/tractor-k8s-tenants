@@ -47,5 +47,17 @@
   },
   "reviewers": [
     "@cleverer"
-  ]
+  ],
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/.+\\.tftpl$/",
+      "/.+\\.ya?ml$/"
+    ]
+  },
+  "flux": {
+    "managerFilePatterns": [
+      "/.+\\.tftpl$/",
+      "/.+\\.ya?ml$/"
+    ]
+  }
 }
