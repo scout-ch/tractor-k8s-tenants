@@ -17,6 +17,19 @@
       "automergeType": "branch"
     },
     {
+      "matchManagers": [
+        "kubernetes",
+        "flux"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest"
+      ],
+      "automerge": false,
+      "automergeType": "pr"
+    },
+    {
       "matchDatasources": [
         "terraform-provider"
       ],
