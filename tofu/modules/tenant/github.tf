@@ -3,7 +3,6 @@ resource "github_repository" "this" {
   description = "FluxCD config repository for tenant ${var.tenant_name} on shared K8s cluster of Tractor"
 
   has_discussions = false
-  has_downloads   = false
   has_issues      = true
   has_projects    = false
   has_wiki        = false
