@@ -17,6 +17,12 @@
       "automergeType": "pr"
     },
     {
+      "matchManagers": [
+        "flux"
+      ],
+      "pinDigests": false
+    },
+    {
       "matchDatasources": [
         "terraform-provider"
       ],
