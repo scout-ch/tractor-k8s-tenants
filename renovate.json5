@@ -56,14 +56,14 @@
   ],
   "kubernetes": {
     "managerFilePatterns": [
-      "/.+\\.tftpl$/",
-      "/.+\\.ya?ml$/"
+      "/\\.tftpl$/",
+      "/\\.ya?ml$/"
     ]
   },
   "flux": {
     "managerFilePatterns": [
-      "/.+\\.tftpl$/",
-      "/.+\\.ya?ml$/"
+      "/\\.tftpl$/",
+      "/\\.ya?ml$/"
     ]
   }
 }
