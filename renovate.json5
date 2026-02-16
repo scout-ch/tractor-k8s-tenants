@@ -65,5 +65,21 @@
       "/\\.tftpl$/",
       "/\\.ya?ml$/"
     ]
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^tofu\/modules\/traefik\/resources\/traefik\.tftpl$/"],
+      "depNameTemplate": "traefik",
+      "packageNameTemplate": "traefik",
+      "versioningTemplate": "helm",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": [
+        "https://helm.traefik.io/traefik"
+      ],
+      matchStrings: [
+        "version:\\s+(?<currentValue>\\S+)"
+      ],
+    },
+  ],
 }
