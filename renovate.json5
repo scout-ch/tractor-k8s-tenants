@@ -74,10 +74,8 @@
       "packageNameTemplate": "traefik",
       "versioningTemplate": "helm",
       "datasourceTemplate": "helm",
-      "registryUrlTemplate": [
-        "https://helm.traefik.io/traefik"
-      ],
-      matchStrings: [
+      "registryUrlTemplate": "https://helm.traefik.io/traefik",
+      "matchStrings": [
         "version:\\s+(?<currentValue>\\S+)"
       ],
     },
