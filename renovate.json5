@@ -1,84 +1,84 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:best-practices",
-    ":semanticCommits",
-    "group:allNonMajor",
-    ":enableVulnerabilityAlertsWithLabel(security)"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:best-practices',
+    ':semanticCommits',
+    'group:allNonMajor',
+    ':enableVulnerabilityAlertsWithLabel(security)',
   ],
-  "packageRules": [
+  packageRules: [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "digest"
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+        'digest',
       ],
-      "automerge": true,
-      "automergeType": "pr"
+      automerge: true,
+      automergeType: 'pr',
     },
     {
-      "matchManagers": [
-        "flux"
+      matchManagers: [
+        'flux',
       ],
-      "pinDigests": false
+      pinDigests: false,
     },
     {
-      "matchDatasources": [
-        "terraform-provider"
+      matchDatasources: [
+        'terraform-provider',
       ],
-      "registryUrls": [
-        "https://registry.opentofu.org"
-      ]
+      registryUrls: [
+        'https://registry.opentofu.org',
+      ],
     },
     {
-      "matchManagers": [
-        "terraform"
+      matchManagers: [
+        'terraform',
       ],
-      "groupSlug": "opentofu",
-      "automerge": false,
-      "prBodyNotes": [
-        "Please remember to run `tofu ini -upgrade`.\n\nThen please check if opentofu wants to change anything.\n\n:warning: Please also check if renovate-bot also caught the opentofu version in the github acitons workflows."
+      groupSlug: 'opentofu',
+      automerge: false,
+      prBodyNotes: [
+        'Please remember to run `tofu ini -upgrade`.\n\nThen please check if opentofu wants to change anything.\n\n:warning: Please also check if renovate-bot also caught the opentofu version in the github acitons workflows.',
       ],
-      "labels": [
-        "manual"
-      ]
-    }
+      labels: [
+        'manual',
+      ],
+    },
   ],
-  "platformAutomerge": true,
-  "prHourlyLimit": 0,
-  "rebaseWhen": "behind-base-branch",
-  "dependencyDashboard": false,
-  "pre-commit": {
-    "enabled": true
+  platformAutomerge: true,
+  prHourlyLimit: 0,
+  rebaseWhen: 'behind-base-branch',
+  dependencyDashboard: false,
+  'pre-commit': {
+    enabled: true,
   },
-  "reviewers": [
-    "@cleverer"
+  reviewers: [
+    '@cleverer',
   ],
-  "kubernetes": {
-    "managerFilePatterns": [
-      "/\\.tftpl$/",
-      "/\\.ya?ml$/"
-    ]
+  kubernetes: {
+    managerFilePatterns: [
+      '/\\.tftpl$/',
+      '/\\.ya?ml$/',
+    ],
   },
-  "flux": {
-    "managerFilePatterns": [
-      "/\\.tftpl$/",
-      "/\\.ya?ml$/"
-    ]
+  flux: {
+    managerFilePatterns: [
+      '/\\.tftpl$/',
+      '/\\.ya?ml$/',
+    ],
   },
-  "customManagers": [
+  customManagers: [
     {
-      "customType": "regex",
-      "managerFilePatterns": ["/^tofu\/modules\/traefik\/resources\/traefik\.tftpl$/"],
-      "depNameTemplate": "traefik",
-      "packageNameTemplate": "traefik",
-      "versioningTemplate": "helm",
-      "datasourceTemplate": "helm",
-      "registryUrlTemplate": [
-        "https://helm.traefik.io/traefik"
+      customType: 'regex',
+      managerFilePatterns: [
+        '/^tofu/modules/traefik/resources/traefik.tftpl$/',
       ],
+      depNameTemplate: 'traefik',
+      packageNameTemplate: 'traefik',
+      versioningTemplate: 'helm',
+      datasourceTemplate: 'helm',
+      registryUrlTemplate: 'https://helm.traefik.io/traefik',
       matchStrings: [
-        "version:\\s+(?<currentValue>\\S+)"
+        'version:\\s+(?<currentValue>\\S+)',
       ],
     },
   ],
