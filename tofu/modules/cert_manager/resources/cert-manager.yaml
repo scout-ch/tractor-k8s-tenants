@@ -62,7 +62,7 @@ spec:
         kind: HelmRepository
         name: cert-manager
         namespace: cert-manager
-      version: v1.19.3
+      version: v1.19.4
   install:
     createNamespace: true
   interval: 1m0s
