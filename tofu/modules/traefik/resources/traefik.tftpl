@@ -93,8 +93,23 @@ spec:
       websecure:
         proxyProtocol:
           insecure: true
-    deployment:
-      replicas: 3
+    autoscaling:
+      enabled: true
+      maxReplicas: 3
+      metrics:
+        - type: Resource
+          resource:
+            name: cpu
+            target:
+              type: Utilization
+              averageUtilization: 80
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "50Mi"
+      limits:
+        cpu: "300m"
+        memory: "150Mi"
     %{ if instance_pool!= null }
     nodeSelector:
       kaas.infomaniak.cloud/instance-pool: ${instance_pool}
