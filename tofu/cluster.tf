@@ -20,3 +20,10 @@ module "cert_manager" {
   cluster_config_repository = module.flux.config_repository
   cluster_config_path       = module.flux.cluster_config_path
 }
+
+module "metrics_server" {
+  source = "./modules/metrics_server"
+
+  cluster_config_repository = module.flux.config_repository
+  cluster_config_path       = module.flux.cluster_config_path
+}
