@@ -27,7 +27,7 @@ module "t_pbs_taiga" {
   cluster_config_repository         = module.flux.config_repository
   instance_pool                     = "pck-8kxhclv-pdp"
   webhook_ingress_host              = local.cluster_webhook_host
-  tenant_config_repo_kustomize_path = "kubeconfigs"
+  tenant_config_repo_kustomize_path = "flux"
 
   visibility = "public"
 }
