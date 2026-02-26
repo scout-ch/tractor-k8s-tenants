@@ -68,5 +68,5 @@ module "t_cosinus_ragflow" {
     "cosinus-ragflow" = module.u_cosinus.unique_username
   }
 
-  visibility = "private"
+  visibility = "public"
 }
