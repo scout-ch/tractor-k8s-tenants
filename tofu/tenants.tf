@@ -59,10 +59,11 @@ module "t_pbs_backstage" {
 module "t_cosinus_ragflow" {
   source = "./modules/tenant"
 
-  tenant_name               = "cosinus-ragflow"
-  cluster_config_repository = module.flux.config_repository
-  instance_pool             = "pck-8kxhclv-pm8"
-  webhook_ingress_host      = local.cluster_webhook_host
+  tenant_name                       = "cosinus-ragflow"
+  cluster_config_repository         = module.flux.config_repository
+  instance_pool                     = "pck-8kxhclv-pm8"
+  webhook_ingress_host              = local.cluster_webhook_host
+  tenant_config_repo_kustomize_path = "fluxcd"
 
   users = {
     "cosinus-ragflow" = module.u_cosinus.unique_username
