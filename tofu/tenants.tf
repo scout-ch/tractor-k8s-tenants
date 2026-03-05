@@ -71,3 +71,15 @@ module "t_cosinus_ragflow" {
 
   visibility = "public"
 }
+
+module "t_clever_debug" {
+  source = "./modules/tenant"
+
+  tenant_name                       = "clever-debug"
+  cluster_config_repository         = module.flux.config_repository
+  instance_pool                     = "pck-8kxhclv-pm8"
+  webhook_ingress_host              = local.cluster_webhook_host
+  tenant_config_repo_kustomize_path = "fluxcd"
+
+  visibility = "private"
+}
