@@ -94,7 +94,7 @@ module "t_pbs_gs_lowcoder" {
   tenant_config_repo_kustomize_path = "fluxcd"
 
   users = {
-    "nano-ps-gs-lowcoder" = module.u_nano.unique_username
+    "nano-pbs-gs-lowcoder" = module.u_nano.unique_username
   }
 
   visibility = "private"
