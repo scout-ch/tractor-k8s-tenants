@@ -38,7 +38,7 @@ module "u_nano" {
   source = "./modules/user"
 
   username          = "nano"
-  default_namespace = "default"
+  default_namespace = "pbs-gs-lowcoder"
 
   cluster_info = local.cluster_info
 }
