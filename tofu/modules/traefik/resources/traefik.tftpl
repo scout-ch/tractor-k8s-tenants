@@ -115,7 +115,7 @@ spec:
       limits:
         cpu: "300m"
         memory: "150Mi"
-    %{ if instance_pool!= null }
+    %{~ if instance_pool!= null ~}
     nodeSelector:
       kaas.infomaniak.cloud/instance-pool: ${instance_pool}
-    %{ endif }
+    %{~ endif ~}
