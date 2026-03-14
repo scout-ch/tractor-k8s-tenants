@@ -13,3 +13,9 @@ variable "instance_pool" {
   type        = string
   default     = null
 }
+
+variable "load_balancer_ip" {
+  description = "IP to set on the loadbalancer"
+  type        = string
+  default     = null
+}

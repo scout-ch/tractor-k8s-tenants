@@ -12,6 +12,7 @@ module "traefik" {
   cluster_config_repository = module.flux.config_repository
   cluster_config_path       = module.flux.cluster_config_path
   instance_pool             = "pck-8kxhclv-pdp"
+  load_balancer_ip          = "37.156.40.230"
 }
 
 module "cert_manager" {
