@@ -18,3 +18,8 @@ output "kubeconfig_filou" {
   value     = module.u_filou.kubeconfig
   sensitive = true
 }
+
+output "kubeconfig_nano" {
+  value     = module.u_nano.kubeconfig
+  sensitive = true
+}
