@@ -33,3 +33,12 @@ module "u_floh" {
 
   cluster_info = local.cluster_info
 }
+
+module "u_nano" {
+  source = "./modules/user"
+
+  username          = "nano"
+  default_namespace = "default"
+
+  cluster_info = local.cluster_info
+}
