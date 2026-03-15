@@ -1,9 +1,6 @@
 terraform {
-  backend "kubernetes" {
-    secret_suffix  = "state"
-    config_path    = "~/.kube/config"
-    config_context = "kubernetes-admin@pck-8kxhclv"
-    namespace      = "tractor-k8s-tenants"
+  backend "pg" {
+    conn_str = "postgres://tractor-k8s-tenants-tf@postgres.tractor.scout.ch:5432/tractor-k8s-tenants-tf?sslmode=disable"
   }
 
   required_providers {
