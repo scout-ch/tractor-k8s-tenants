@@ -6,7 +6,7 @@ terraform {
   required_providers {
     infomaniak = {
       source  = "Infomaniak/infomaniak"
-      version = "1.4.0"
+      version = "1.4.1"
     }
     flux = {
       source  = "fluxcd/flux"
@@ -22,7 +22,7 @@ terraform {
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "3.0.1"
+      version = "3.1.0"
     }
     random = {
       source  = "hashicorp/random"
