@@ -2,6 +2,7 @@ module "t_mova_erinnerungsbuch" {
   source = "./modules/tenant"
 
   tenant_name               = "mova-erinnerungsbuch"
+  cluster_name              = local.cluster_name
   cluster_config_repository = module.flux.config_repository
   instance_pool             = "pck-8kxhclv-pdp"
   webhook_ingress_host      = local.cluster_webhook_host
@@ -13,6 +14,7 @@ module "t_pbs_redirector" {
   source = "./modules/tenant"
 
   tenant_name               = "pbs-redirector"
+  cluster_name              = local.cluster_name
   cluster_config_repository = module.flux.config_repository
   instance_pool             = "pck-8kxhclv-pdp"
   webhook_ingress_host      = local.cluster_webhook_host
@@ -24,6 +26,7 @@ module "t_pbs_taiga" {
   source = "./modules/tenant"
 
   tenant_name                       = "pbs-taiga"
+  cluster_name                      = local.cluster_name
   cluster_config_repository         = module.flux.config_repository
   instance_pool                     = "pck-8kxhclv-pdp"
   webhook_ingress_host              = local.cluster_webhook_host
@@ -36,6 +39,7 @@ module "t_pbs_matrix" {
   source = "./modules/tenant"
 
   tenant_name                       = "pbs-matrix"
+  cluster_name                      = local.cluster_name
   cluster_config_repository         = module.flux.config_repository
   instance_pool                     = "pck-8kxhclv-pdp"
   webhook_ingress_host              = local.cluster_webhook_host
@@ -48,6 +52,7 @@ module "t_pbs_backstage" {
   source = "./modules/tenant"
 
   tenant_name                       = "pbs-backstage"
+  cluster_name                      = local.cluster_name
   cluster_config_repository         = module.flux.config_repository
   instance_pool                     = "pck-8kxhclv-pdp"
   webhook_ingress_host              = local.cluster_webhook_host
@@ -60,6 +65,7 @@ module "t_cosinus_ragflow" {
   source = "./modules/tenant"
 
   tenant_name                       = "cosinus-ragflow"
+  cluster_name                      = local.cluster_name
   cluster_config_repository         = module.flux.config_repository
   instance_pool                     = "pck-8kxhclv-pm8"
   webhook_ingress_host              = local.cluster_webhook_host
@@ -76,6 +82,7 @@ module "t_clever_debug" {
   source = "./modules/tenant"
 
   tenant_name                       = "clever-debug"
+  cluster_name                      = local.cluster_name
   cluster_config_repository         = module.flux.config_repository
   instance_pool                     = "pck-8kxhclv-pm8"
   webhook_ingress_host              = local.cluster_webhook_host
@@ -88,6 +95,7 @@ module "t_pbs_gs_lowcoder" {
   source = "./modules/tenant"
 
   tenant_name                       = "pbs-gs-lowcoder"
+  cluster_name                      = local.cluster_name
   cluster_config_repository         = module.flux.config_repository
   instance_pool                     = "pck-8kxhclv-pm8"
   webhook_ingress_host              = local.cluster_webhook_host

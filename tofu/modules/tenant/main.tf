@@ -1,5 +1,5 @@
 locals {
-  config_path                  = "tenants/${var.tenant_name}"
+  config_path                  = "tenants/${var.cluster_name}/${var.tenant_name}"
   github_repository_name       = "${var.cluster_config_repository}-${var.tenant_name}"
   kubernetes_namespace         = var.tenant_name
   default_service_account_name = var.tenant_name

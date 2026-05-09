@@ -11,11 +11,3 @@ resource "github_repository_file" "cluster_issuers" {
 
   depends_on = [github_repository_file.this]
 }
-
-resource "github_repository_file" "kustomization" {
-  repository = var.cluster_config_repository
-  file       = "${var.cluster_config_path}/infrastructure/cert-manager.yaml"
-  content    = file("${path.module}/resources/kustomization.yaml")
-
-  depends_on = [github_repository_file.cluster_issuers]
-}

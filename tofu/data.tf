@@ -1,5 +1,5 @@
 module "tractor_k8s_shared" {
-  source = "./modules/kaas"
+  source = "./modules/kaas_data"
 
   cluster = {
     id = "1618"
