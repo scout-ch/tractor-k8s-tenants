@@ -36,7 +36,9 @@ resource "github_repository_deploy_key" "this" {
 resource "github_repository_file" "tenants" {
   repository = local.github_repository.name
   file       = "${local.cluster_config_path}/tenants.yaml"
-  content    = file("${path.module}/resources/tenants.yaml")
+  content = templatefile("${path.module}/resources/tenants.tftpl", {
+    cluster_name = var.cluster_name
+  })
 }
 
 resource "github_repository_file" "webhook_ingress" {

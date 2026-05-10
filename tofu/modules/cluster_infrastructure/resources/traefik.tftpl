@@ -13,17 +13,17 @@ spec:
   path: ./infrastructure/traefik
   prune: true
   wait: true
-patches:
-  - target:
-      kind: HelmRelease
-    patch: |
-    %{~ if instance_pool!= null ~}
-      - op: add
-        path: /spec/values/nodeSelector/kaas.infomaniak.cloud/instance-pool
-        value: ${instance_pool}
-    %{~ endif ~}
-    %{~ if load_balancer_ip != null ~}
-      - op: add
-        path: /spec/values/service/spec/loadBalancerIP
-        value: ${load_balancer_ip}
-    %{~ endif ~}
+  patches:
+    - target:
+        kind: HelmRelease
+      patch: |
+      %{~ if instance_pool!= null ~}
+        - op: add
+          path: /spec/values/nodeSelector/kaas.infomaniak.cloud~1instance-pool
+          value: ${instance_pool}
+      %{~ endif ~}
+      %{~ if load_balancer_ip != null ~}
+        - op: add
+          path: /spec/values/service/spec/loadBalancerIP
+          value: ${load_balancer_ip}
+      %{~ endif ~}
