@@ -1,9 +1,4 @@
-variable "cluster_config_repository" {
+variable "github_repository" {
   description = "The GitHub repository containing the cluster configuration for the shared K8s cluster"
-  type        = string
-}
-
-variable "cluster_config_path" {
-  description = "Path to the cluster config"
   type        = string
 }

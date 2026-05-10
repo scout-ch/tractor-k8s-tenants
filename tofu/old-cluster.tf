@@ -8,12 +8,6 @@ module "flux" {
   webhook_ingress_host = local.cluster_webhook_host
 }
 
-module "traefik" {
-  source = "./modules/traefik"
-
-  github_repository = module.flux.config_repository
-}
-
 module "infrastructure" {
   source = "./modules/cluster_infrastructure"
 
@@ -23,16 +17,20 @@ module "infrastructure" {
   load_balancer_ip          = "37.156.40.230"
 }
 
+module "traefik" {
+  source = "./modules/traefik"
+
+  github_repository = module.flux.config_repository
+}
+
 module "cert_manager" {
   source = "./modules/cert_manager"
 
-  cluster_config_repository = module.flux.config_repository
-  cluster_config_path       = module.flux.cluster_config_path
+  github_repository = module.flux.config_repository
 }
 
 module "metrics_server" {
   source = "./modules/metrics_server"
 
-  cluster_config_repository = module.flux.config_repository
-  cluster_config_path       = module.flux.cluster_config_path
+  github_repository = module.flux.config_repository
 }

@@ -19,8 +19,9 @@ spec:
       patch: |
       %{~ if instance_pool!= null ~}
         - op: add
-          path: /spec/values/nodeSelector/kaas.infomaniak.cloud~1instance-pool
-          value: ${instance_pool}
+          path: /spec/values/nodeSelector
+          value:
+            kaas.infomaniak.cloud/instance-pool: ${instance_pool}
       %{~ endif ~}
       %{~ if load_balancer_ip != null ~}
         - op: add

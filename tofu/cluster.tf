@@ -40,8 +40,8 @@ module "flux_production" {
 module "infrastructure_production" {
   source = "./modules/cluster_infrastructure"
 
-  cluster_config_repository = module.flux.config_repository
-  cluster_config_path       = module.flux.cluster_config_path
+  cluster_config_repository = module.flux_production.config_repository
+  cluster_config_path       = module.flux_production.cluster_config_path
   instance_pool             = "pck-2tvwejg-ppy"
   load_balancer_ip          = "195.15.199.206"
 }
