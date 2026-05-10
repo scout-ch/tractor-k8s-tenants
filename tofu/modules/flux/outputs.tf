@@ -1,11 +1,11 @@
 output "config_repository" {
   description = "The GitHub repository containing the cluster configuration for the shared K8s cluster"
-  value       = github_repository.this.name
+  value       = local.github_repository.name
 }
 
 output "config_repository_full_name" {
   description = "The full name of the GitHub repository containing the cluster configuration for the shared K8s cluster"
-  value       = github_repository.this.full_name
+  value       = local.github_repository.full_name
 }
 
 output "cluster_config_path" {

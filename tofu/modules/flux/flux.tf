@@ -14,8 +14,8 @@ module "webhook" {
   for_each = var.webhook_ingress_host != null ? { "this" = var.webhook_ingress_host } : {}
 
   source                   = "../flux_webhook"
-  config_github_repository = github_repository.this.name
-  github_repository        = var.github_repository
+  config_github_repository = local.github_repository.name
+  github_repository        = local.github_repository.name
   config_path              = local.cluster_config_path
   host                     = each.value
   namespace                = "flux-system"

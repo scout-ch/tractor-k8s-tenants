@@ -1,4 +1,6 @@
 terraform {
+  required_version = ">= 1.11, < 2"
+
   backend "pg" {
     conn_str = "postgres://tractor-k8s-tenants-tf@postgres.tractor.scout.ch:5432/tractor-k8s-tenants-tf?sslmode=disable"
   }
