@@ -8,6 +8,11 @@ variable "cluster_config_path" {
   type        = string
 }
 
+variable "cluster_name" {
+  description = "Name of the cluster, used for naming resources"
+  type        = string
+}
+
 variable "instance_pool" {
   description = "Node selector instance pool"
   type        = string

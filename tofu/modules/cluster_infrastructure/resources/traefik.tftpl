@@ -28,3 +28,8 @@ spec:
           path: /spec/values/service/spec/loadBalancerIP
           value: ${load_balancer_ip}
       %{~ endif ~}
+      %{~ if service_name_override != null ~}
+        - op: add
+          path: /spec/values/service/nameOverride
+          value: ${service_name_override}
+      %{~ endif ~}

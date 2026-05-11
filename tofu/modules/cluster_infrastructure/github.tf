@@ -2,8 +2,9 @@ resource "github_repository_file" "traefik" {
   repository = var.cluster_config_repository
   file       = "${var.cluster_config_path}/infrastructure/traefik.yaml"
   content = templatefile("${path.module}/resources/traefik.tftpl", {
-    instance_pool    = var.instance_pool
-    load_balancer_ip = var.load_balancer_ip
+    instance_pool         = var.instance_pool
+    load_balancer_ip      = var.load_balancer_ip
+    service_name_override = "traefik-${var.cluster_name}"
   })
 
   lifecycle {
