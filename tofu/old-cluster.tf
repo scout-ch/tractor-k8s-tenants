@@ -3,7 +3,7 @@ module "flux" {
 
   cluster_name = local.cluster_name
   github_repository = {
-    full_name = "scout-ch/tractor-k8s-shared"
+    full_name = github_repository.flux-config.full_name
   }
   webhook_ingress_host = local.cluster_webhook_host
 }

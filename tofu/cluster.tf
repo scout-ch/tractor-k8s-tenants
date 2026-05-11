@@ -27,7 +27,7 @@ module "flux_production" {
 
   cluster_name = "tractor-k8s-production"
   github_repository = {
-    full_name = "scout-ch/tractor-k8s-shared"
+    full_name = github_repository.flux-config.full_name
   }
   webhook_ingress_host = "flux.prod.k8s.tractor.scout.ch"
 
