@@ -32,4 +32,14 @@ spec:
         - op: add
           path: /spec/values/service/nameOverride
           value: ${service_name_override}
+        - op: add
+          path: /spec/values/providers/kubernetesGateway/statusAddress
+          value:
+            service:
+              name: ${service_name_override}
+        - op: add
+          path: /spec/values/providers/kubernetesIngress
+          value:
+            publishedService:
+              pathOverride: traefik/${service_name_override}
       %{~ endif ~}
