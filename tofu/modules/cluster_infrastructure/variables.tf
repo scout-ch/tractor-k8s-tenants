@@ -1,16 +1,19 @@
 variable "cluster_config_repository" {
   description = "The GitHub repository containing the cluster configuration for the shared K8s cluster"
   type        = string
+  nullable    = false
 }
 
 variable "cluster_config_path" {
   description = "Path to the cluster config"
   type        = string
+  nullable    = false
 }
 
 variable "cluster_name" {
   description = "Name of the cluster, used for naming resources"
   type        = string
+  nullable    = false
 }
 
 variable "instance_pool" {
@@ -31,10 +34,33 @@ variable "enable" {
     traefik        = optional(bool, true)
     cert_manager   = optional(bool, true)
     metrics_server = optional(bool, true)
+    velero         = optional(bool, true)
   })
   default = {
     traefik        = true
     cert_manager   = true
     metrics_server = true
+    velero         = true
   }
+  validation {
+    condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null
+    error_message = "Velero backup location details must be provided when Velero is enabled"
+  }
+}
+
+variable "velero_schedule" {
+  description = "Cron schedule for Velero backup jobs"
+  type        = string
+  default     = null
+}
+
+variable "velero_infomaniak_backup_location" {
+  description = "Velero storage location for backups"
+  type = object({
+    region_name                 = string
+    auth_url                    = optional(string, "https://api.pub1.infomaniak.cloud/identity")
+    application_credential_name = string
+    os_swift_endpoint_host      = string
+  })
+  default = null
 }

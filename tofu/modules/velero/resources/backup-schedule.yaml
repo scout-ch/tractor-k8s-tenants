@@ -1,0 +1,27 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: cluster-backup
+  namespace: velero
+spec:
+  # Schedule is a Cron expression defining when to run the Backup
+  schedule: "CRON_TZ=Europe/Zurich 0 3 * * *"
+  # Specifies whether to use OwnerReferences on backups created by this Schedule.
+  # Notice: if set to true, when schedule is deleted, backups will be deleted too. Optional.
+  useOwnerReferencesInBackup: true
+  # Template is the spec that should be used for each backup triggered by this schedule.
+  template:
+    excludedNamespaces:
+      - cilium-secrets
+      - kube-node-lease
+      - kube-public
+      - kube-system
+    # Array of resources to include in the backup. Resources may be shortcuts (for example 'po' for 'pods')
+    # or fully-qualified. If unspecified, all resources are included. Optional.
+    includedResources:
+      - "ns"
+      - "secret"
+    # Where to store the tarball and logs.
+    storageLocation: infomaniak
+    # whether pod volume file system backup should be used for all volumes by default.
+    defaultVolumesToFsBackup: true

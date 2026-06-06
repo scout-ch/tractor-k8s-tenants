@@ -16,6 +16,13 @@ module "infrastructure" {
   cluster_name              = local.cluster_name
   instance_pool             = "pck-8kxhclv-pdp"
   load_balancer_ip          = "37.156.40.230"
+
+  velero_infomaniak_backup_location = {
+    region_name                 = "dc4-a"
+    auth_url                    = "https://api.pub1.infomaniak.cloud/identity"
+    application_credential_name = "tractor-k8s-shared-velero"
+    os_swift_endpoint_host      = "s3.pub2.infomaniak.cloud"
+  }
 }
 
 module "traefik" {
@@ -32,6 +39,12 @@ module "cert_manager" {
 
 module "metrics_server" {
   source = "./modules/metrics_server"
+
+  github_repository = module.flux.config_repository
+}
+
+module "velero" {
+  source = "./modules/velero"
 
   github_repository = module.flux.config_repository
 }

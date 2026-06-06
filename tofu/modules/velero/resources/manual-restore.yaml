@@ -1,0 +1,8 @@
+apiVersion: velero.io/v1
+kind: Restore
+# Standard Kubernetes metadata. Required.
+metadata:
+  name: manual-restore
+  namespace: velero
+spec:
+  backupName: manual-backup

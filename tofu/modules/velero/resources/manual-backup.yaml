@@ -1,0 +1,21 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: manual-backup
+  namespace: velero
+spec:
+  # Array of namespaces to exclude from the backup. Accepts glob patterns (*, ?, [abc]). Optional.
+  excludedNamespaces:
+    - cilium-secrets
+    - kube-node-lease
+    - kube-public
+    - kube-system
+  # Array of resources to include in the backup. Resources may be shortcuts (for example 'po' for 'pods')
+  # or fully-qualified. If unspecified, all resources are included. Optional.
+  includedResources:
+    - "ns"
+    - "secret"
+  # Where to store the tarball and logs.
+  storageLocation: infomaniak
+  # whether pod volume file system backup should be used for all volumes by default.
+  defaultVolumesToFsBackup: true

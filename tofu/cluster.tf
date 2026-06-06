@@ -45,4 +45,11 @@ module "infrastructure_production" {
   cluster_name              = "tractor-k8s-production"
   instance_pool             = "pck-2tvwejg-ppy"
   load_balancer_ip          = "195.15.199.206"
+
+  velero_infomaniak_backup_location = {
+    region_name                 = "dc4-a"
+    auth_url                    = "https://api.pub1.infomaniak.cloud/identity"
+    application_credential_name = "tractor-k8s-production-velero"
+    os_swift_endpoint_host      = "s3.pub2.infomaniak.cloud"
+  }
 }

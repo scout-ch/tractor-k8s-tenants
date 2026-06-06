@@ -1,0 +1,100 @@
+#
+# RBAC
+#
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: velero
+  name: velero
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: velero
+  name: velero
+  namespace: velero
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: velero
+  name: velero-reconciler
+  namespace: velero
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: velero
+    namespace: velero
+#
+# Velero Helm
+#
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  interval: 1h
+  url: https://vmware-tanzu.github.io/helm-charts
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmChart
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  interval: 5m0s
+  chart: velero
+  reconcileStrategy: ChartVersion
+  sourceRef:
+    kind: HelmRepository
+    name: velero
+  version: "12.0.1"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  serviceAccountName: velero
+  interval: 15m
+  timeout: 5m
+  chartRef:
+    kind: HelmChart
+    name: velero
+    namespace: velero
+  driftDetection:
+    mode: warn
+  values:
+    credentials:
+      useSecret: false # created manually and in another path
+      extraSecretRef: os-swift-config
+    extraVolumes:
+      - name: velero-credentials
+        secret:
+          secretName: velero-credentials
+    extraVolumeMounts:
+      - name: velero-credentials
+        mountPath: /etc/openstack
+        readOnly: true
+    initContainers:
+      - name: velero-plugin-openstack
+        image: lirt/velero-plugin-for-openstack:v0.8.2
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    backupsEnabled: false # created manually
+    snapshotsEnabled: false
+    configuration:
+      defaultVolumesToFsBackup: true
+    deployNodeAgent: true

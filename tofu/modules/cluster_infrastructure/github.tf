@@ -31,3 +31,26 @@ resource "github_repository_file" "metrics_server" {
     enabled = var.enable.metrics_server
   }
 }
+
+resource "github_repository_file" "velero" {
+  repository = var.cluster_config_repository
+  file       = "${var.cluster_config_path}/infrastructure/velero.yaml"
+  content = templatefile("${path.module}/resources/velero.tftpl", {
+    schedule       = var.velero_schedule
+    storage_prefix = var.cluster_name
+  })
+
+  lifecycle {
+    enabled = var.enable.velero
+  }
+}
+
+resource "github_repository_file" "velero_secret" {
+  repository = var.cluster_config_repository
+  file       = "manual/clusters/${var.cluster_name}/velero-secret.yaml"
+  content    = templatefile("${path.module}/resources/velero-secret.tftpl", var.velero_infomaniak_backup_location)
+
+  lifecycle {
+    enabled = var.enable.velero
+  }
+}
