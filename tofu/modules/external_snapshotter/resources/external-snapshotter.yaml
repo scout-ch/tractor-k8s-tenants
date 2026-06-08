@@ -80,14 +80,3 @@ spec:
   prune: true
   wait: true
   targetNamespace: external-snapshotter
----
-apiVersion: snapshot.storage.k8s.io/v1
-kind: VolumeSnapshotClass
-metadata:
-  name: csi-cinder
-  annotations:
-    snapshot.storage.kubernetes.io/is-default-class: "true"
-driver: cinder.csi.openstack.org
-deletionPolicy: Delete
-parameters:
-  force-create: "true"

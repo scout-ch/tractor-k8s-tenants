@@ -26,4 +26,6 @@ spec:
     # Where to store the tarball and logs.
     storageLocation: infomaniak
     # whether pod volume file system backup should be used for all volumes by default.
-    defaultVolumesToFsBackup: true
+    defaultVolumesToFsBackup: false
+    snapshotVolumes: true
+    snapshotMoveData: true
