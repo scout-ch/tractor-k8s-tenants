@@ -6,3 +6,4 @@ metadata:
   namespace: velero
 spec:
   backupName: manual-backup
+  existingResourcePolicy: update

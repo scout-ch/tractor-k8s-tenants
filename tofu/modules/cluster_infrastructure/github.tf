@@ -54,3 +54,13 @@ resource "github_repository_file" "velero_secret" {
     enabled = var.enable.velero
   }
 }
+
+resource "github_repository_file" "external_snapshotter" {
+  repository = var.cluster_config_repository
+  file       = "${var.cluster_config_path}/infrastructure/external-snapshotter.yaml"
+  content    = file("${path.module}/resources/external-snapshotter.yaml")
+
+  lifecycle {
+    enabled = var.enable.external_snapshotter
+  }
+}

@@ -31,16 +31,18 @@ variable "load_balancer_ip" {
 variable "enable" {
   description = "Selectively enable or disable certain infrastructure"
   type = object({
-    traefik        = optional(bool, true)
-    cert_manager   = optional(bool, true)
-    metrics_server = optional(bool, true)
-    velero         = optional(bool, true)
+    traefik              = optional(bool, true)
+    cert_manager         = optional(bool, true)
+    metrics_server       = optional(bool, true)
+    velero               = optional(bool, true)
+    external_snapshotter = optional(bool, true)
   })
   default = {
-    traefik        = true
-    cert_manager   = true
-    metrics_server = true
-    velero         = true
+    traefik              = true
+    cert_manager         = true
+    metrics_server       = true
+    velero               = true
+    external_snapshotter = true
   }
   validation {
     condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null

@@ -1,0 +1,93 @@
+#
+# RBAC
+#
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: external-snapshotter
+  name: external-snapshotter
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: external-snapshotter
+  name: external-snapshotter
+  namespace: external-snapshotter
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: external-snapshotter
+  name: external-snapshotter-reconciler
+  namespace: external-snapshotter
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: external-snapshotter
+    namespace: external-snapshotter
+#
+# external-snapshotter installation
+#
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: external-snapshotter
+  namespace: external-snapshotter
+spec:
+  interval: 5m0s
+  url: https://github.com/kubernetes-csi/external-snapshotter
+  ref:
+    tag: v8.6.0
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-external-snapshotter-crds
+  namespace: external-snapshotter
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: external-snapshotter
+  serviceAccountName: external-snapshotter
+  path: ./client/config/crd
+  prune: true
+  wait: true
+  targetNamespace: external-snapshotter
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-external-snapshotter
+  namespace: external-snapshotter
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: infrastructure-external-snapshotter-crds
+  sourceRef:
+    kind: GitRepository
+    name: external-snapshotter
+  serviceAccountName: external-snapshotter
+  path: ./deploy/kubernetes/snapshot-controller
+  prune: true
+  wait: true
+  targetNamespace: external-snapshotter
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: csi-cinder
+  annotations:
+    snapshot.storage.kubernetes.io/is-default-class: "true"
+driver: cinder.csi.openstack.org
+deletionPolicy: Delete
+parameters:
+  force-create: "true"

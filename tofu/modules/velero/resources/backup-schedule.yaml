@@ -21,6 +21,8 @@ spec:
     includedResources:
       - "ns"
       - "secret"
+      - "pvc"
+      - "pv"
     # Where to store the tarball and logs.
     storageLocation: infomaniak
     # whether pod volume file system backup should be used for all volumes by default.

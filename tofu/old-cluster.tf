@@ -48,3 +48,9 @@ module "velero" {
 
   github_repository = module.flux.config_repository
 }
+
+module "external_snapshotter" {
+  source = "./modules/external_snapshotter"
+
+  github_repository = module.flux.config_repository
+}
