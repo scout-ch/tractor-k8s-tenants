@@ -88,7 +88,7 @@ spec:
         readOnly: true
     initContainers:
       - name: velero-plugin-openstack
-        image: lirt/velero-plugin-for-openstack:v0.8.2
+        image: lirt/velero-plugin-for-openstack:v0.8.2@sha256:32d017f14e9ed311e898384a6c3f7517b6c78f9f697cfb432a46d4cad7ffb39f
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target
