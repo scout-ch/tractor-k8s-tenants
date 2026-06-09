@@ -3,8 +3,8 @@ module "t_mova_erinnerungsbuch" {
 
   tenant_name               = "mova-erinnerungsbuch"
   cluster_name              = local.cluster_name
-  cluster_config_repository = module.flux.config_repository
-  instance_pool             = "pck-8kxhclv-pdp"
+  cluster_config_repository = module.flux_production.config_repository
+  instance_pool             = "pck-2tvwejg-ppy"
   webhook_ingress_host      = local.cluster_webhook_host
 
   visibility = "public"
@@ -15,8 +15,8 @@ module "t_pbs_redirector" {
 
   tenant_name               = "pbs-redirector"
   cluster_name              = local.cluster_name
-  cluster_config_repository = module.flux.config_repository
-  instance_pool             = "pck-8kxhclv-pdp"
+  cluster_config_repository = module.flux_production.config_repository
+  instance_pool             = "pck-2tvwejg-ppy"
   webhook_ingress_host      = local.cluster_webhook_host
 
   visibility = "public"
@@ -27,8 +27,8 @@ module "t_pbs_taiga" {
 
   tenant_name                       = "pbs-taiga"
   cluster_name                      = local.cluster_name
-  cluster_config_repository         = module.flux.config_repository
-  instance_pool                     = "pck-8kxhclv-pdp"
+  cluster_config_repository         = module.flux_production.config_repository
+  instance_pool                     = "pck-2tvwejg-ppy"
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "flux"
 
@@ -40,8 +40,8 @@ module "t_pbs_matrix" {
 
   tenant_name                       = "pbs-matrix"
   cluster_name                      = local.cluster_name
-  cluster_config_repository         = module.flux.config_repository
-  instance_pool                     = "pck-8kxhclv-pdp"
+  cluster_config_repository         = module.flux_production.config_repository
+  instance_pool                     = "pck-2tvwejg-ppy"
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "fluxcd"
 
@@ -53,8 +53,8 @@ module "t_pbs_backstage" {
 
   tenant_name                       = "pbs-backstage"
   cluster_name                      = local.cluster_name
-  cluster_config_repository         = module.flux.config_repository
-  instance_pool                     = "pck-8kxhclv-pdp"
+  cluster_config_repository         = module.flux_production.config_repository
+  instance_pool                     = "pck-2tvwejg-ppy"
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "kubeconfigs"
 
@@ -66,7 +66,7 @@ module "t_cosinus_ragflow" {
 
   tenant_name                       = "cosinus-ragflow"
   cluster_name                      = local.cluster_name
-  cluster_config_repository         = module.flux.config_repository
+  cluster_config_repository         = module.flux_production.config_repository
   instance_pool                     = "pck-8kxhclv-pm8"
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "fluxcd"
@@ -83,7 +83,7 @@ module "t_clever_debug" {
 
   tenant_name                       = "clever-debug"
   cluster_name                      = local.cluster_name
-  cluster_config_repository         = module.flux.config_repository
+  cluster_config_repository         = module.flux_production.config_repository
   instance_pool                     = "pck-8kxhclv-pm8"
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "fluxcd"
@@ -96,7 +96,7 @@ module "t_pbs_gs_lowcoder" {
 
   tenant_name                       = "pbs-gs-lowcoder"
   cluster_name                      = local.cluster_name
-  cluster_config_repository         = module.flux.config_repository
+  cluster_config_repository         = module.flux_production.config_repository
   instance_pool                     = "pck-8kxhclv-pm8"
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "fluxcd"

@@ -34,11 +34,11 @@ terraform {
 }
 
 locals {
-  cluster_name         = "tractor-k8s-shared"
+  cluster_name         = "tractor-k8s-production"
   cluster_webhook_host = "flux.k8s.tractor.scout.ch"
   cluster_info = {
-    name     = "pck-8kxhclv"
-    endpoint = "https://83.166.143.133:30566"
+    name     = "pck-2tvwejg"
+    endpoint = "https://83.166.143.133:30988"
     ca       = file("./ca.crt")
   }
 }

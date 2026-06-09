@@ -7,7 +7,7 @@ module "kaas_production" {
   }
 
   cluster = {
-    name      = "tractor-k8s-production"
+    name      = local.cluster_name
     version   = "1.35"
     pack_name = "dedicated_4"
     region    = "dc3-a"
@@ -15,8 +15,8 @@ module "kaas_production" {
 
   cluster_instance_pools = {
     default = {
-      min_instances     = 2
-      max_instances     = 5
+      min_instances     = 4
+      max_instances     = 4
       availability_zone = "dc3-a-10"
     }
   }
@@ -25,11 +25,11 @@ module "kaas_production" {
 module "flux_production" {
   source = "./modules/flux"
 
-  cluster_name = "tractor-k8s-production"
+  cluster_name = local.cluster_name
   github_repository = {
     full_name = github_repository.flux-config.full_name
   }
-  webhook_ingress_host = "flux.prod.k8s.tractor.scout.ch"
+  webhook_ingress_host = local.cluster_webhook_host
 
   providers = {
     flux       = flux.flux-production
@@ -42,7 +42,7 @@ module "infrastructure_production" {
 
   cluster_config_repository = module.flux_production.config_repository
   cluster_config_path       = module.flux_production.cluster_config_path
-  cluster_name              = "tractor-k8s-production"
+  cluster_name              = local.cluster_name
   instance_pool             = "pck-2tvwejg-ppy"
   load_balancer_ip          = "195.15.199.206"
 

@@ -8,3 +8,33 @@ resource "github_repository" "flux-config" {
     "tractor",
   ]
 }
+
+module "traefik" {
+  source = "./modules/traefik"
+
+  github_repository = module.flux_production.config_repository
+}
+
+module "cert_manager" {
+  source = "./modules/cert_manager"
+
+  github_repository = module.flux_production.config_repository
+}
+
+module "metrics_server" {
+  source = "./modules/metrics_server"
+
+  github_repository = module.flux_production.config_repository
+}
+
+module "velero" {
+  source = "./modules/velero"
+
+  github_repository = module.flux_production.config_repository
+}
+
+module "external_snapshotter" {
+  source = "./modules/external_snapshotter"
+
+  github_repository = module.flux_production.config_repository
+}
