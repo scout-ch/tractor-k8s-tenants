@@ -87,8 +87,8 @@ spec:
         mountPath: /etc/openstack
         readOnly: true
     initContainers:
-      - name: velero-plugin-openstack
-        image: lirt/velero-plugin-for-openstack:v0.8.2@sha256:32d017f14e9ed311e898384a6c3f7517b6c78f9f697cfb432a46d4cad7ffb39f
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.13.2 # currently locked to older version to prevent issues with it trying to set tags.
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target

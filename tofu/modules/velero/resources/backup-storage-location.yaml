@@ -10,5 +10,11 @@ spec:
   objectStorage:
     bucket: k8s-backups
   config:
-    cloud: infomaniak
-  provider: community.openstack.org/openstack
+    region: "us-east-1"
+    s3ForcePathStyle: "true"
+    checksumAlgorithm: ""
+    tagging: ""
+  provider: velero.io/aws
+  credential:
+    key: tractor-k8s-backup
+    name: infomaniak-s3-credentials

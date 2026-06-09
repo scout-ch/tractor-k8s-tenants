@@ -36,8 +36,9 @@ resource "github_repository_file" "velero" {
   repository = var.cluster_config_repository
   file       = "${var.cluster_config_path}/infrastructure/velero.yaml"
   content = templatefile("${path.module}/resources/velero.tftpl", {
-    schedule       = var.velero_schedule
-    storage_prefix = var.cluster_name
+    schedule                                 = var.velero_schedule
+    storage_prefix                           = var.cluster_name
+    velero_infomaniak_backup_location_s3_url = var.velero_infomaniak_backup_location_s3_url
   })
 
   lifecycle {
@@ -48,7 +49,7 @@ resource "github_repository_file" "velero" {
 resource "github_repository_file" "velero_secret" {
   repository = var.cluster_config_repository
   file       = "manual/clusters/${var.cluster_name}/velero-secret.yaml"
-  content    = templatefile("${path.module}/resources/velero-secret.tftpl", var.velero_infomaniak_backup_location)
+  content    = file("${path.module}/resources/velero-secret.yaml")
 
   lifecycle {
     enabled = var.enable.velero

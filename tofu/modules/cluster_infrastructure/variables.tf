@@ -45,7 +45,7 @@ variable "enable" {
     external_snapshotter = true
   }
   validation {
-    condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null
+    condition     = var.enable.velero == false || var.velero_infomaniak_backup_location_s3_url != null
     error_message = "Velero backup location details must be provided when Velero is enabled"
   }
 }
@@ -56,13 +56,8 @@ variable "velero_schedule" {
   default     = null
 }
 
-variable "velero_infomaniak_backup_location" {
+variable "velero_infomaniak_backup_location_s3_url" {
   description = "Velero storage location for backups"
-  type = object({
-    region_name                 = string
-    auth_url                    = optional(string, "https://api.pub1.infomaniak.cloud/identity")
-    application_credential_name = string
-    os_swift_endpoint_host      = string
-  })
-  default = null
+  type        = string
+  default     = null
 }

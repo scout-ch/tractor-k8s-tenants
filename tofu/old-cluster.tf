@@ -17,12 +17,7 @@ module "infrastructure" {
   instance_pool             = "pck-8kxhclv-pdp"
   load_balancer_ip          = "37.156.40.230"
 
-  velero_infomaniak_backup_location = {
-    region_name                 = "dc4-a"
-    auth_url                    = "https://api.pub1.infomaniak.cloud/identity"
-    application_credential_name = "tractor-k8s-shared-velero"
-    os_swift_endpoint_host      = "s3.pub2.infomaniak.cloud"
-  }
+  velero_infomaniak_backup_location_s3_url = "https://s3.pub2.infomaniak.cloud/"
 }
 
 module "traefik" {

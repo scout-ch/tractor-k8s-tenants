@@ -37,6 +37,9 @@ spec:
         - op: add
           path: /spec/objectStorage/prefix
           value: "${storage_prefix}"
+        - op: add
+          path: /spec/config/s3Url
+          value: "${velero_infomaniak_backup_location_s3_url}"
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
