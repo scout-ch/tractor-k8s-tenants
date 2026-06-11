@@ -1,0 +1,30 @@
+#
+# Gateway API CRDs
+#
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gateway-api
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  url: https://github.com/kubernetes-sigs/gateway-api
+  ref:
+    tag: v1.5.1
+    commit: e7677b70ae75d14a4448fba94870e7deea6cf0ad
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-gateway-api-crds-apply
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: gateway-api
+  serviceAccountName: kustomize-controller
+  path: ./config/crd
+  prune: true
+  wait: true

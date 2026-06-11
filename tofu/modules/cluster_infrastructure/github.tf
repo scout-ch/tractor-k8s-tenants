@@ -1,3 +1,13 @@
+resource "github_repository_file" "gateway_api_crds" {
+  repository = var.cluster_config_repository
+  file       = "${var.cluster_config_path}/infrastructure/gateway-api-crds.yaml"
+  content    = file("${path.module}/resources/gateway-api-crds.yaml")
+
+  lifecycle {
+    enabled = var.enable.gateway_api_crds
+  }
+}
+
 resource "github_repository_file" "traefik" {
   repository = var.cluster_config_repository
   file       = "${var.cluster_config_path}/infrastructure/traefik.yaml"

@@ -31,6 +31,7 @@ variable "load_balancer_ip" {
 variable "enable" {
   description = "Selectively enable or disable certain infrastructure"
   type = object({
+    gateway_api_crds     = optional(bool, true)
     traefik              = optional(bool, true)
     cert_manager         = optional(bool, true)
     metrics_server       = optional(bool, true)
@@ -38,6 +39,7 @@ variable "enable" {
     external_snapshotter = optional(bool, true)
   })
   default = {
+    gateway_api_crds     = true
     traefik              = true
     cert_manager         = true
     metrics_server       = true
@@ -47,6 +49,10 @@ variable "enable" {
   validation {
     condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null
     error_message = "Velero backup location details must be provided when Velero is enabled"
+  }
+  validation {
+    condition     = var.enable.traefik == false || var.enable.gateway_api_crds == true
+    error_message = "If you enable traefik, you need to also have gateway api crds."
   }
 }
 

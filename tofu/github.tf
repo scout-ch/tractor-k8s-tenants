@@ -9,6 +9,12 @@ resource "github_repository" "flux-config" {
   ]
 }
 
+module "gateway_api_crds" {
+  source = "./modules/gateway_api_crds"
+
+  github_repository = module.flux_production.config_repository
+}
+
 module "traefik" {
   source = "./modules/traefik"
 
