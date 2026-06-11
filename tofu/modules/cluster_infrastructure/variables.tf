@@ -45,7 +45,7 @@ variable "enable" {
     external_snapshotter = true
   }
   validation {
-    condition     = var.enable.velero == false || var.velero_infomaniak_backup_location_s3_url != null
+    condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null
     error_message = "Velero backup location details must be provided when Velero is enabled"
   }
 }
@@ -56,8 +56,14 @@ variable "velero_schedule" {
   default     = null
 }
 
-variable "velero_infomaniak_backup_location_s3_url" {
+variable "velero_infomaniak_backup_location" {
   description = "Velero storage location for backups"
-  type        = string
-  default     = null
+  type = object({
+    s3_url = string
+    s3_credentials = object({
+      access_key    = string
+      access_secret = string
+    })
+  })
+  default = null
 }

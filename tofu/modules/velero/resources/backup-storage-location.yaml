@@ -7,8 +7,6 @@ metadata:
 spec:
   accessMode: ReadWrite
   default: true
-  objectStorage:
-    bucket: k8s-backups
   config:
     region: "us-east-1"
     s3ForcePathStyle: "true"

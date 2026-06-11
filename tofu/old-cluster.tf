@@ -8,6 +8,11 @@ module "flux" {
   webhook_ingress_host = "flux.old.k8s.tractor.scout.ch"
 }
 
+module "backup_storage" {
+  source      = "./modules/backup-storage"
+  bucket_name = "tractor-k8s-shared"
+}
+
 module "infrastructure" {
   source = "./modules/cluster_infrastructure"
 
@@ -17,5 +22,8 @@ module "infrastructure" {
   instance_pool             = "pck-8kxhclv-pdp"
   load_balancer_ip          = "37.156.40.230"
 
-  velero_infomaniak_backup_location_s3_url = "https://s3.pub2.infomaniak.cloud/"
+  velero_infomaniak_backup_location = {
+    s3_url         = "https://s3.pub2.infomaniak.cloud/"
+    s3_credentials = module.backup_storage.credentials
+  }
 }

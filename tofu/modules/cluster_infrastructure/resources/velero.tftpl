@@ -35,8 +35,9 @@ spec:
         name: infomaniak
       patch: |-
         - op: add
-          path: /spec/objectStorage/prefix
-          value: "${storage_prefix}"
+          path: /spec/objectStorage
+          value:
+            bucket: "${velero_infomaniak_backup_location_bucket}"
         - op: add
           path: /spec/config/s3Url
           value: "${velero_infomaniak_backup_location_s3_url}"

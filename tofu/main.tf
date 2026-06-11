@@ -30,6 +30,10 @@ terraform {
       source  = "hashicorp/random"
       version = "3.8.1"
     }
+    openstack = {
+      source  = "terraform-provider-openstack/openstack"
+      version = "3.4.0"
+    }
   }
 }
 

@@ -38,6 +38,11 @@ module "flux_production" {
   }
 }
 
+module "backup_storage_production" {
+  source      = "./modules/backup-storage"
+  bucket_name = local.cluster_name
+}
+
 module "infrastructure_production" {
   source = "./modules/cluster_infrastructure"
 
@@ -47,5 +52,12 @@ module "infrastructure_production" {
   instance_pool             = "pck-2tvwejg-pne"
   load_balancer_ip          = "195.15.199.206"
 
-  velero_infomaniak_backup_location_s3_url = "https://s3.pub2.infomaniak.cloud/"
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
+
+  velero_infomaniak_backup_location = {
+    s3_url         = "https://s3.pub2.infomaniak.cloud/"
+    s3_credentials = module.backup_storage_production.credentials
+  }
 }
