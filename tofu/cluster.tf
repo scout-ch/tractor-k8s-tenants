@@ -16,8 +16,8 @@ module "kaas_production" {
   cluster_instance_pools = {
     default = {
       flavor_name       = "a1-ram4-disk20-perf1"
-      min_instances     = 4
-      max_instances     = 4
+      min_instances     = 3
+      max_instances     = 7
       availability_zone = "dc3-a-10"
     }
   }
