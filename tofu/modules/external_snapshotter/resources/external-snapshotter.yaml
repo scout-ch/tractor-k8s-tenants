@@ -46,7 +46,6 @@ spec:
   url: https://github.com/kubernetes-csi/external-snapshotter
   ref:
     tag: v8.6.0
-    commit: 78e32cd84e0abec2621924a30e38c755f93e180a # v8.6.0
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
