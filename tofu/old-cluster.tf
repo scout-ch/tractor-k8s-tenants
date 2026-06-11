@@ -9,7 +9,7 @@ module "flux" {
 }
 
 module "backup_storage" {
-  source      = "./modules/backup-storage"
+  source      = "./modules/backup_storage"
   bucket_name = "tractor-k8s-shared"
 }
 

@@ -39,7 +39,7 @@ module "flux_production" {
 }
 
 module "backup_storage_production" {
-  source      = "./modules/backup-storage"
+  source      = "./modules/backup_storage"
   bucket_name = local.cluster_name
 }
 
