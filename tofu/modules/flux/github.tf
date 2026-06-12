@@ -41,6 +41,12 @@ resource "github_repository_file" "tenants" {
   })
 }
 
+resource "github_repository_file" "tenants_folder" {
+  repository = local.github_repository.name
+  file       = "tenants/${var.cluster_name}/.gitkeep"
+  content    = ""
+}
+
 resource "github_repository_file" "webhook_ingress" {
   for_each = local.webhook_ingress_manifest != null ? { "this" = local.webhook_ingress_manifest } : {}
 
