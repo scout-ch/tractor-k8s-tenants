@@ -9,7 +9,7 @@ metadata:
     toolkit.fluxcd.io/tenant: ${tenant_name}
   %{ if instance_pool != null }
   annotations:
-    scheduler.alpha.kubernetes.io/node-selector: kaas.infomaniak.cloud/instance-pool=${instance_pool}
+    "tractor.scout.ch/instance-pool": ${instance_pool}
   %{ endif }
   name: ${namespace}
 ---
