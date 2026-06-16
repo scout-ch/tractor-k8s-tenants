@@ -48,7 +48,13 @@ spec:
 
   variables:
     - name: instancePool
-      expression: resource.Get("v1", "namespaces", "", object.metadata.namespace).metadata.annotations["tractor.scout.ch/instance-pool"]
+      expression: >
+        (has(resource.Get("v1", "namespaces", "", object.metadata.namespace).metadata.annotations) &&
+         "tractor.scout.ch/instance-pool" in resource.Get("v1", "namespaces", "", object.metadata.namespace).metadata.annotations)
+        ?
+        resource.Get("v1", "namespaces", "", object.metadata.namespace).metadata.annotations["tractor.scout.ch/instance-pool"]
+        :
+        null
 
   mutations:
     - patchType: JSONPatch
