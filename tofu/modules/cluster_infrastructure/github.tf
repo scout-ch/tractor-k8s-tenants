@@ -15,6 +15,8 @@ resource "github_repository_file" "traefik" {
     instance_pool         = var.instance_pool
     load_balancer_ip      = var.load_balancer_ip
     service_name_override = "traefik-${var.cluster_name}"
+    min_replicas          = var.traefik_autoscale.min_replicas
+    max_replicas          = var.traefik_autoscale.max_replicas
   })
 
   lifecycle {

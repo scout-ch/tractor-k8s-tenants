@@ -73,3 +73,15 @@ variable "velero_infomaniak_backup_location" {
   })
   default = null
 }
+
+variable "traefik_autoscale" {
+  description = "Traefik autoscale config"
+  type = object({
+    min_replicas = optional(number, 3)
+    max_replicas = optional(number, 3)
+  })
+  default = {
+    min_replicas = 3
+    max_replicas = 3
+  }
+}

@@ -61,3 +61,26 @@ spec:
             publishedService:
               pathOverride: traefik/${service_name_override}
       %{~ endif ~}
+      %{~ if min_replicas != max_replicas }
+        - op: add
+          path: /spec/values
+          value:
+            autoscaling:
+              enabled: true
+              minReplicas: 2
+              maxReplicas: 5
+              metrics:
+                - type: Resource
+                  resource:
+                    name: cpu
+                    target:
+                      type: Utilization
+                      averageUtilization: 80
+      %{ else }
+        - op: add
+          path: /spec/values
+          value:
+            deployment:
+              replicas: 3
+      %{ endif }
+

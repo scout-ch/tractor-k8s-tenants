@@ -95,17 +95,6 @@ spec:
       websecure:
         proxyProtocol:
           insecure: true
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-      maxReplicas: 5
-      metrics:
-        - type: Resource
-          resource:
-            name: cpu
-            target:
-              type: Utilization
-              averageUtilization: 80
     resources:
       requests:
         cpu: "100m"
