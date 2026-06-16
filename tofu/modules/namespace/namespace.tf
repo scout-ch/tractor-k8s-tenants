@@ -7,7 +7,7 @@ resource "kubernetes_namespace_v1" "this" {
     }
 
     annotations = var.instance_pool != null ? {
-      "scheduler.alpha.kubernetes.io/node-selector" = "kaas.infomaniak.cloud/instance-pool=${var.instance_pool}"
+      "tractor.scout.ch/instance-pool" = "${var.instance_pool}"
     } : null
   }
 }

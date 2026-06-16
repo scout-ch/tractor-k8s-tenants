@@ -67,3 +67,17 @@ resource "github_repository_file" "external_snapshotter" {
     enabled = var.enable.external_snapshotter
   }
 }
+
+resource "github_repository_file" "kyverno" {
+  repository = var.cluster_config_repository
+  file       = "${var.cluster_config_path}/infrastructure/kyverno.yaml"
+  content = templatefile("${path.module}/resources/kyverno.tftpl", {
+    policies = {
+      "instance-pool-selector" = var.kyverno_policies.instance_pool_selector
+    }
+  })
+
+  lifecycle {
+    enabled = var.enable.kyverno
+  }
+}

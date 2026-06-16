@@ -37,6 +37,7 @@ variable "enable" {
     metrics_server       = optional(bool, true)
     velero               = optional(bool, true)
     external_snapshotter = optional(bool, true)
+    kyverno              = optional(bool, true)
   })
   default = {
     gateway_api_crds     = true
@@ -45,6 +46,7 @@ variable "enable" {
     metrics_server       = true
     velero               = true
     external_snapshotter = true
+    kyverno              = true
   }
   validation {
     condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null
@@ -72,6 +74,19 @@ variable "velero_infomaniak_backup_location" {
     })
   })
   default = null
+}
+
+variable "kyverno_policies" {
+  type = object({
+    instance_pool_selector = optional(bool, true)
+  })
+  default = {
+    instance_pool_selector = true
+  }
+  validation {
+    condition     = var.enable.kyverno || alltrue([for key, value in var.kyverno_policies : value])
+    error_message = "You need to install kyverno if you enable a policy"
+  }
 }
 
 variable "traefik_autoscale" {

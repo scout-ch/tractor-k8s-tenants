@@ -32,15 +32,18 @@ spec:
   prune: true
   wait: true
   patches:
+    %{~ if instance_pool!= null ~}
+    - target:
+        kind: Namespace
+        name: traefik
+      patch: |-
+        - op: add
+          path: /metadata/annotations/tractor.scout.ch~1instance-pool
+          value: "${instance_pool}"
+    %{~ endif ~}
     - target:
         kind: HelmRelease
       patch: |
-      %{~ if instance_pool!= null ~}
-        - op: add
-          path: /spec/values/nodeSelector
-          value:
-            kaas.infomaniak.cloud/instance-pool: ${instance_pool}
-      %{~ endif ~}
       %{~ if load_balancer_ip != null ~}
         - op: add
           path: /spec/values/service/spec/loadBalancerIP
