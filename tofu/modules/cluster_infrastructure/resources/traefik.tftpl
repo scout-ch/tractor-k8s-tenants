@@ -63,24 +63,22 @@ spec:
       %{~ endif ~}
       %{~ if min_replicas != max_replicas }
         - op: add
-          path: /spec/values
+          path: /spec/values/autoscaling
           value:
-            autoscaling:
-              enabled: true
-              minReplicas: 2
-              maxReplicas: 5
-              metrics:
-                - type: Resource
-                  resource:
-                    name: cpu
-                    target:
-                      type: Utilization
-                      averageUtilization: 80
+            enabled: true
+            minReplicas: 2
+            maxReplicas: 5
+            metrics:
+              - type: Resource
+                resource:
+                  name: cpu
+                  target:
+                    type: Utilization
+                    averageUtilization: 80
       %{ else }
         - op: add
-          path: /spec/values
+          path: /spec/values/deployment
           value:
-            deployment:
-              replicas: 3
+            replicas: 3
       %{ endif }
 
