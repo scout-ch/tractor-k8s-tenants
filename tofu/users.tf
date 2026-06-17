@@ -5,6 +5,10 @@ module "u_cosinus" {
   default_namespace = "cosinus-ragflow"
 
   cluster_info = local.cluster_info
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "u_clever" {
@@ -14,6 +18,10 @@ module "u_clever" {
   default_namespace = null
 
   cluster_info = local.cluster_info
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "u_filou" {
@@ -23,6 +31,10 @@ module "u_filou" {
   default_namespace = null
 
   cluster_info = local.cluster_info
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "u_floh" {
@@ -32,6 +44,10 @@ module "u_floh" {
   default_namespace = "pbs-who-is-who"
 
   cluster_info = local.cluster_info
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "u_nano" {
@@ -41,4 +57,8 @@ module "u_nano" {
   default_namespace = "pbs-gs-lowcoder"
 
   cluster_info = local.cluster_info
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
