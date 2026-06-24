@@ -8,6 +8,10 @@ module "t_mova_erinnerungsbuch" {
   webhook_ingress_host      = local.cluster_webhook_host
 
   visibility = "public"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "t_pbs_redirector" {
@@ -20,6 +24,10 @@ module "t_pbs_redirector" {
   webhook_ingress_host      = local.cluster_webhook_host
 
   visibility = "public"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "t_pbs_taiga" {
@@ -33,6 +41,10 @@ module "t_pbs_taiga" {
   tenant_config_repo_kustomize_path = "flux"
 
   visibility = "public"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "t_pbs_matrix" {
@@ -46,6 +58,10 @@ module "t_pbs_matrix" {
   tenant_config_repo_kustomize_path = "fluxcd"
 
   visibility = "public"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "t_pbs_backstage" {
@@ -59,6 +75,10 @@ module "t_pbs_backstage" {
   tenant_config_repo_kustomize_path = "kubeconfigs"
 
   visibility = "public"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "t_cosinus_ragflow" {
@@ -76,6 +96,10 @@ module "t_cosinus_ragflow" {
   }
 
   visibility = "public"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "t_clever_debug" {
@@ -89,6 +113,10 @@ module "t_clever_debug" {
   tenant_config_repo_kustomize_path = "fluxcd"
 
   visibility = "private"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "t_pbs_gs_lowcoder" {
@@ -106,4 +134,8 @@ module "t_pbs_gs_lowcoder" {
   }
 
   visibility = "private"
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
