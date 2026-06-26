@@ -78,9 +78,8 @@ spec:
         externalTrafficPolicy: Local # 👈 Preserve client source IP
       annotations:
         loadbalancer.openstack.org/proxy-protocol: "true" # 👈 Amphora LB Proxy Protocol einschalten
-    logs:
-      access:
-        enabled: true
+    accessLog:
+      enabled: true
     ports:
       web:
         proxyProtocol:
