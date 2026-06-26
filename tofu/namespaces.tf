@@ -7,6 +7,10 @@ module "ns_pbs_who_is_who" {
   users = {
     "floh-who-is-who" = module.u_floh.unique_username
   }
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
 }
 
 module "ns_pbs_pfadi_finder_midata_adapter" {
@@ -17,5 +21,9 @@ module "ns_pbs_pfadi_finder_midata_adapter" {
 
   users = {
     "floh-pfadi-finder-midata-adapter" = module.u_floh.unique_username
+  }
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
   }
 }
