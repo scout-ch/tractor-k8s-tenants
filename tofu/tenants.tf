@@ -67,11 +67,11 @@ module "t_pbs_matrix" {
 module "t_pbs_backstage" {
   source = "./modules/tenant"
 
-  tenant_name                       = "pbs-backstage"
-  cluster_name                      = local.cluster_name
-  cluster_config_repository         = module.flux_production.config_repository
-  instance_pool                     = "pck-2tvwejg-pne"
-  webhook_ingress_host              = local.cluster_webhook_host
+  tenant_name               = "pbs-backstage"
+  cluster_name              = local.cluster_name
+  cluster_config_repository = module.flux_production.config_repository
+  instance_pool             = "pck-2tvwejg-pne"
+  webhook_ingress_host      = local.cluster_webhook_host
 
   visibility = "public"
 
