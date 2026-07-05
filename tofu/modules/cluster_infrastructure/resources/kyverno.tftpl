@@ -13,6 +13,29 @@ spec:
   path: ./infrastructure/kyverno
   prune: true
   wait: true
+  patches:
+    %{~ if instance_pool!= null ~}
+    - target:
+        kind: HelmRelease
+        name: kyverno
+      patch: |-
+        - op: add
+          path: /spec/values/global
+          value:
+            nodeSelector:
+              "kaas.infomaniak.cloud/instance-pool": "${instance_pool}"
+    %{~ endif ~}
+    - target:
+        kind: HelmRelease
+        name: kyverno
+      patch: |-
+        - op: add
+          path: /spec/values/backgroundController
+          value:
+            resources:
+              limits:
+                memory: 512Mi
+
 %{~ for policy in [for key, value in policies: key if value] }
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1

@@ -2,32 +2,40 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure-cert-manager
+  name: infrastructure-external-snapshotter
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-    - name: infrastructure-traefik
   sourceRef:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/cert-manager
+  path: ./infrastructure/external-snapshotter
   prune: true
   wait: true
+  %{~ if instance_pool!= null ~}
+  patches:
+    - target:
+        kind: Namespace
+        name: external-snapshotter
+      patch: |-
+        - op: add
+          path: /metadata/annotations/tractor.scout.ch~1instance-pool
+          value: "${instance_pool}"
+  %{~ endif ~}
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure-cluster-issuers
+  name: infrastructure-volume-snapshot-class
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
-    - name: infrastructure-cert-manager
+    - name: infrastructure-external-snapshotter
   sourceRef:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/cluster-issuers
+  path: ./infrastructure/volume-snapshot-class
   prune: true

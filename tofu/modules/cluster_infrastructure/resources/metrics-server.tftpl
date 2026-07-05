@@ -13,3 +13,13 @@ spec:
   path: ./infrastructure/metrics-server
   prune: true
   wait: true
+  %{~ if instance_pool!= null ~}
+  patches:
+    - target:
+        kind: Namespace
+        name: metrics-server
+      patch: |-
+        - op: add
+          path: /metadata/annotations/tractor.scout.ch~1instance-pool
+          value: "${instance_pool}"
+  %{~ endif ~}
