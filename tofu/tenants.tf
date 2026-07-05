@@ -87,7 +87,7 @@ module "t_cosinus_ragflow" {
   tenant_name                       = "cosinus-ragflow"
   cluster_name                      = local.cluster_name
   cluster_config_repository         = module.flux_production.config_repository
-  instance_pool                     = "pck-2tvwejg-pap"
+  instance_pool                     = "pck-2tvwejg-pgc"
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "fluxcd"
 
