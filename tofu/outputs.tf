@@ -23,3 +23,8 @@ output "kubeconfig_nano" {
   value     = module.u_nano.kubeconfig
   sensitive = true
 }
+
+output "kubeconfig_phoenix" {
+  value     = module.u_phoenix.kubeconfig
+  sensitive = true
+}
