@@ -62,3 +62,16 @@ module "u_nano" {
     kubernetes = kubernetes.kubernetes-production
   }
 }
+
+module "u_phoenix" {
+  source = "./modules/user"
+
+  username          = "phoenix"
+  default_namespace = "pbs-thilo"
+
+  cluster_info = local.cluster_info
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
+}

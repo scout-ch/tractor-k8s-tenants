@@ -157,3 +157,21 @@ module "t_pbs_who_is_who" {
     kubernetes = kubernetes.kubernetes-production
   }
 }
+
+module "t_pbs_thilo" {
+  source = "./modules/tenant"
+
+  tenant_name               = "pbs-thilo"
+  cluster_name              = local.cluster_name
+  cluster_config_repository = module.flux_production.config_repository
+  instance_pool             = "pck-2tvwejg-pne"
+  webhook_ingress_host      = local.cluster_webhook_host
+
+  users = {
+    "phoenix-pbs-thilo" = module.u_phoenix.unique_username
+  }
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
+}
