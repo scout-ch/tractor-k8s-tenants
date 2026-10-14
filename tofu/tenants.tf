@@ -176,3 +176,21 @@ module "t_pbs_thilo" {
     kubernetes = kubernetes.kubernetes-production
   }
 }
+
+module "t_pbs_scoutola" {
+  source = "./modules/tenant"
+
+  tenant_name               = "pbs-scoutola"
+  cluster_name              = local.cluster_name
+  cluster_config_repository = module.flux_production.config_repository
+  instance_pool             = "pck-2tvwejg-pne"
+  webhook_ingress_host      = local.cluster_webhook_host
+
+  users = {
+    "filou-pbs-scoutola" = module.u_filou.unique_username
+  }
+
+  providers = {
+    kubernetes = kubernetes.kubernetes-production
+  }
+}
