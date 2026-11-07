@@ -76,7 +76,7 @@ module "t_pbs_backstage" {
   tenant_config_repo_kustomize_path = "kubeconfigs"
 
   users = {
-    "filou-pbs-backstage"  = module.u_filou.unique_username
+    "filou-pbs-backstage"   = module.u_filou.unique_username
     "phoenix-pbs-backstage" = module.u_phoenix.unique_username
   }
 
