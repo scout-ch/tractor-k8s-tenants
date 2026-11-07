@@ -75,12 +75,12 @@ module "t_pbs_backstage" {
   webhook_ingress_host              = local.cluster_webhook_host
   tenant_config_repo_kustomize_path = "kubeconfigs"
 
-  visibility = "public"
-
   users = {
-    "filou-pbs-backstage" = module.u_filou.unique_username
+    "filou-pbs-backstage"  = module.u_filou.unique_username
     "phoenix-pbs-backstage" = module.u_phoenix.unique_username
   }
+
+  visibility = "public"
 
   providers = {
     kubernetes = kubernetes.kubernetes-production
