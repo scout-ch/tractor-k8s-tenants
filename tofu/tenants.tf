@@ -77,6 +77,11 @@ module "t_pbs_backstage" {
 
   visibility = "public"
 
+  users = {
+    "filou-pbs-backstage" = module.u_filou.unique_username
+    "phoenix-pbs-backstage" = module.u_phoenix.unique_username
+  }
+
   providers = {
     kubernetes = kubernetes.kubernetes-production
   }
