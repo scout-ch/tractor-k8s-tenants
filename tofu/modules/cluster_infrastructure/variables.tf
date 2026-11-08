@@ -38,6 +38,7 @@ variable "enable" {
     velero               = optional(bool, true)
     external_snapshotter = optional(bool, true)
     kyverno              = optional(bool, true)
+    prometheus           = optional(bool, true)
   })
   default = {
     gateway_api_crds     = true
@@ -47,6 +48,7 @@ variable "enable" {
     velero               = true
     external_snapshotter = true
     kyverno              = true
+    prometheus           = false
   }
   validation {
     condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null

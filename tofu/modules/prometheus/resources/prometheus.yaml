@@ -1,0 +1,89 @@
+#
+# RBAC
+#
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: prometheus
+  name: prometheus
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: prometheus
+  name: prometheus
+  namespace: prometheus
+---
+# prometheus needs cluster-wide permissions to watch for IngressRoutes and provides CRDs
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: prometheus
+  name: prometheus-reconciler
+  namespace: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prometheus
+#
+# prometheus HelmRelease
+#
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  interval: 1h
+  url: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
+  ref:
+    tag: 93.1.0
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  serviceAccountName: prometheus
+  chartRef:
+    name: prometheus
+    namespace: prometheus
+    kind: OCIRepository
+  install:
+    createNamespace: true
+  interval: 1m0s
+  releaseName: prometheus
+  storageNamespace: prometheus
+  targetNamespace: prometheus
+  values:
+    alertmanager:
+      enabled: false
+
+    grafana:
+      enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - grafana.k8s.tractor.scout.ch
+
+    prometheus:
+      enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - prometheus.k8s.tractor.scout.ch

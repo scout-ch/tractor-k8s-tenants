@@ -89,3 +89,15 @@ resource "github_repository_file" "kyverno" {
     enabled = var.enable.kyverno
   }
 }
+
+resource "github_repository_file" "prometheus" {
+  repository = var.cluster_config_repository
+  file       = "${var.cluster_config_path}/infrastructure/prometheus.yaml"
+  content = templatefile("${path.module}/resources/prometheus.tftpl", {
+    instance_pool = var.instance_pool
+  })
+
+  lifecycle {
+    enabled = var.enable.prometheus
+  }
+}

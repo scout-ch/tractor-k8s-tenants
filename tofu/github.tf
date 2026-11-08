@@ -33,6 +33,14 @@ module "metrics_server" {
   github_repository = module.flux_production.config_repository
 }
 
+
+module "prometheus_production" {
+  source = "./modules/prometheus"
+
+  github_repository = module.flux_production.config_repository
+}
+
+
 module "velero" {
   source = "./modules/velero"
 

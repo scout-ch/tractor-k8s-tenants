@@ -60,4 +60,8 @@ module "infrastructure_production" {
     s3_url         = "https://s3.pub2.infomaniak.cloud/"
     s3_credentials = module.backup_storage_production.credentials
   }
+
+  enable = {
+    prometheus = true
+  }
 }
