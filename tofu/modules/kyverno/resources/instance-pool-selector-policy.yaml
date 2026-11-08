@@ -11,7 +11,7 @@ metadata:
 spec:
   evaluation:
     mutateExisting:
-      enabled: true
+      enabled: false
 
   matchConstraints:
     resourceRules:
