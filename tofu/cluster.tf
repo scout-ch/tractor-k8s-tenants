@@ -62,6 +62,12 @@ module "infrastructure_production" {
   }
 
   enable = {
-    prometheus = true
+    prometheus = {
+      grafana = {
+        enabled          = true
+        ingress_hostname = "grafana.k8s.tractor.scout.ch"
+      }
+      ingress_hostname = "prometheus.k8s.tractor.scout.ch"
+    }
   }
 }

@@ -73,17 +73,13 @@ spec:
       enabled: false
 
     grafana:
-      enabled: true
+      enabled: false
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: traefik
-        hosts:
-          - grafana.k8s.tractor.scout.ch
 
     prometheus:
       enabled: true
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: traefik
-        hosts:
-          - prometheus.k8s.tractor.scout.ch

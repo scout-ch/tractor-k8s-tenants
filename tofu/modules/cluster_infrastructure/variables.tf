@@ -38,7 +38,16 @@ variable "enable" {
     velero               = optional(bool, true)
     external_snapshotter = optional(bool, true)
     kyverno              = optional(bool, true)
-    prometheus           = optional(bool, true)
+    prometheus = optional(
+      object({
+        grafana = object({
+          enabled          = bool
+          ingress_hostname = optional(string, null)
+        })
+        ingress_hostname = optional(string, null)
+      }),
+      null
+    )
   })
   default = {
     gateway_api_crds     = true
@@ -48,7 +57,7 @@ variable "enable" {
     velero               = true
     external_snapshotter = true
     kyverno              = true
-    prometheus           = false
+    prometheus           = null
   }
   validation {
     condition     = var.enable.velero == false || var.velero_infomaniak_backup_location != null

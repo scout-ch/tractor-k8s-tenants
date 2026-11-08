@@ -94,10 +94,38 @@ resource "github_repository_file" "prometheus" {
   repository = var.cluster_config_repository
   file       = "${var.cluster_config_path}/infrastructure/prometheus.yaml"
   content = templatefile("${path.module}/resources/prometheus.tftpl", {
-    instance_pool = var.instance_pool
+    patches = yamlencode([
+      for patch in [
+        var.enable.prometheus.grafana.enabled ? {
+          op    = "replace"
+          path  = "/spec/values/grafana/enabled"
+          value = true
+        } : null,
+        var.enable.prometheus.grafana.ingress_hostname != null ? {
+          op    = "replace"
+          path  = "/spec/values/grafana/ingress/enabled"
+          value = true
+        } : null,
+        var.enable.prometheus.grafana.ingress_hostname != null ? {
+          op    = "add"
+          path  = "/spec/values/grafana/ingress/hosts"
+          value = [var.enable.prometheus.grafana.ingress_hostname]
+        } : null,
+        var.enable.prometheus.ingress_hostname != null ? {
+          op    = "replace"
+          path  = "/spec/values/prometheus/ingress/enabled"
+          value = true
+        } : null,
+        var.enable.prometheus.ingress_hostname != null ? {
+          op    = "add"
+          path  = "/spec/values/prometheus/ingress/hosts"
+          value = [var.enable.prometheus.ingress_hostname]
+        } : null
+      ] : patch if patch != null
+    ])
   })
 
   lifecycle {
-    enabled = var.enable.prometheus
+    enabled = var.enable.prometheus != null
   }
 }
