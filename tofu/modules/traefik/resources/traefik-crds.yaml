@@ -8,7 +8,7 @@ metadata:
   name: traefik-crds
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 1h
   url: https://github.com/traefik/traefik-helm-chart
   ref:
     tag: v42.3.1
@@ -19,7 +19,8 @@ metadata:
   name: infrastructure-traefik-crds-apply
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   sourceRef:
     kind: GitRepository
     name: traefik-crds

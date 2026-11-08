@@ -5,7 +5,8 @@ metadata:
   name: infrastructure-cert-manager
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   dependsOn:
     - name: infrastructure-traefik
   sourceRef:
@@ -32,7 +33,8 @@ metadata:
   name: infrastructure-cluster-issuers
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   dependsOn:
     - name: infrastructure-cert-manager
   sourceRef:

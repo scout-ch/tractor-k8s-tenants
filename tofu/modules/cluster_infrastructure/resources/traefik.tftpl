@@ -5,7 +5,8 @@ metadata:
   name: infrastructure-traefik-crds
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -20,7 +21,8 @@ metadata:
   name: infrastructure-traefik
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   dependsOn:
     - name: infrastructure-gateway-api-crds
     - name: infrastructure-traefik-crds

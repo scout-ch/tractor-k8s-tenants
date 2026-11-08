@@ -64,7 +64,8 @@ spec:
     kind: OCIRepository
   install:
     createNamespace: true
-  interval: 1m0s
+  interval: 10m
+  retryInterval: 1m
   releaseName: prometheus
   storageNamespace: prometheus
   targetNamespace: prometheus

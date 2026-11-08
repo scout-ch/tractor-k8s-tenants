@@ -5,7 +5,8 @@ metadata:
   name: infrastructure-kyverno
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -44,7 +45,8 @@ metadata:
   name: infrastructure-kyverno-policy-${policy}
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   dependsOn:
     - name: infrastructure-kyverno
   sourceRef:

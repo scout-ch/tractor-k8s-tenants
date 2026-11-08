@@ -8,7 +8,8 @@ metadata:
   name: gateway-api
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 10m
+  retryInterval: 1m
   url: https://github.com/kubernetes-sigs/gateway-api
   ref:
     tag: v1.7.0
@@ -19,7 +20,8 @@ metadata:
   name: infrastructure-gateway-api-crds-apply
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   sourceRef:
     kind: GitRepository
     name: gateway-api

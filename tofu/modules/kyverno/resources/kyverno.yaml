@@ -61,7 +61,7 @@ spec:
         kind: HelmRepository
         name: kyverno
       version: 3.9.2
-  interval: 10m0s
+  interval: 1h
   driftDetection:
     mode: enabled
   values:

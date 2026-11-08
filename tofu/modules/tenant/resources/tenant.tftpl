@@ -61,7 +61,8 @@ metadata:
   namespace: ${namespace}
 spec:
   serviceAccountName: ${default_service_account_name}
-  interval: 10m0s
+  interval: 10m
+  retryInterval: 1m
   path: ${tenant_config_repo_kustomize_path}
   prune: true
   sourceRef:

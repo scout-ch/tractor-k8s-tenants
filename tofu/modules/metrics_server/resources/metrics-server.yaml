@@ -51,7 +51,7 @@ spec:
         kind: HelmRepository
         name: metrics-server
       version: 3.14.0
-  interval: 10m0s
+  interval: 1h
   values:
     replicas: 2
     tls:
