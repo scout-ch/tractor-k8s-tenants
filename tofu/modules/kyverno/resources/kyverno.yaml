@@ -67,9 +67,22 @@ spec:
   values:
     admissionController:
       replicas: 2
+      container:
+        extraArgs:
+          clientRateLimitQPS: 20
+          clientRateLimitBurst: 40
     backgroundController:
       replicas: 1
+      extraArgs:
+        clientRateLimitQPS: 20
+        clientRateLimitBurst: 40
     cleanupController:
       replicas: 1
+      extraArgs:
+        clientRateLimitQPS: 20
+        clientRateLimitBurst: 40
     reportsController:
       replicas: 1
+      extraArgs:
+        clientRateLimitQPS: 20
+        clientRateLimitBurst: 40

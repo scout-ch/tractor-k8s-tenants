@@ -65,7 +65,6 @@ spec:
   install:
     createNamespace: true
   interval: 10m
-  retryInterval: 1m
   releaseName: cert-manager
   storageNamespace: cert-manager
   targetNamespace: cert-manager

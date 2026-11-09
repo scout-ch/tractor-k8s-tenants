@@ -67,7 +67,6 @@ metadata:
 spec:
   serviceAccountName: velero
   interval: 10m
-  retryInterval: 1m
   timeout: 5m
   chartRef:
     kind: HelmChart

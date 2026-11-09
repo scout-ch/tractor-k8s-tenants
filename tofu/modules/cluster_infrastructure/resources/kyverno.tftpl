@@ -31,11 +31,10 @@ spec:
         name: kyverno
       patch: |-
         - op: add
-          path: /spec/values/backgroundController
+          path: /spec/values/backgroundController/resources
           value:
-            resources:
-              limits:
-                memory: 512Mi
+            limits:
+              memory: 512Mi
 
 %{~ for policy in [for key, value in policies: key if value] }
 ---

@@ -65,7 +65,6 @@ spec:
   install:
     createNamespace: true
   interval: 10m
-  retryInterval: 1m
   releaseName: prometheus
   storageNamespace: prometheus
   targetNamespace: prometheus
