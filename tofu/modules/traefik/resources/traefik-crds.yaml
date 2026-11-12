@@ -11,7 +11,7 @@ spec:
   interval: 1h
   url: https://github.com/traefik/traefik-helm-chart
   ref:
-    tag: v42.3.2
+    tag: v42.4.0
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
