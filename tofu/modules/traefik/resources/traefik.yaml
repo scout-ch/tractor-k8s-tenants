@@ -60,7 +60,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 42.4.3
+      version: 43.0.0
   interval: 1h
   driftDetection:
     mode: enabled
